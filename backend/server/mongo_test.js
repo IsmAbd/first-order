@@ -23,9 +23,10 @@ app.set('view engine', 'ejs');
 
 mongoClient.connect(url, function(err, db) {
   if (err) throw err;
+//select database, TODO: change db name to correct one
   var dbo = db.db("test");
-//  var query = { borough: "Bronx" };
-  var query =  {'name': /.*New China.*/};
+//query all entries, TODO: change to correct query
+  var query =  {};
   dbo.collection("restaurants").find(query).toArray(function(err, result) {
     if (err) throw err;
     console.log(result);
