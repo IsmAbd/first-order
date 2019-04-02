@@ -1,0 +1,11 @@
+db: firstorder
+collections: users, business users, restaurants, menus (?), tables (? qr codes)
+
+restaurants:
+
+- owner (business user)
+- restuarant name
+- full address
+- menu: menu entries (foods) incl. price (menu in weitere Collection auslagern?)
+- (rating)
+- 
