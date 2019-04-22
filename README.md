@@ -11,7 +11,8 @@ Steps to start the server:
 **To Test Read and Input**
 * open "localhost:5000/graphql"
 * To Write to DB user following query.
-* mutation{
+
+mutation{
   createRocket(userInput:{
     name: "someName",
     date: "someDate"
@@ -22,5 +23,16 @@ Steps to start the server:
 }
 * to get all Rockets, type:
 
+{findAllRockets{
+  name
+  id
+  date
+}}
 
+* to find Rocket by ID:
+
+{findRocketById(id: "insertID" ){
+  name
+  date
+}}
 *Name of Table and Database are just for now. Will change as soon as we continue with development*
