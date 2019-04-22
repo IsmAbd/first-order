@@ -8,23 +8,19 @@ Steps to start the server:
 *  to run the development server, type "npm run dev"
 *  Install RethingDB and run it in default settings
 
-**JUST FOR TESTING, otherwise current server can't connect to DB** 
-*  Open RethingDB Dashboard and check if a database exists, if not, create one
-*  Create Table named "Rockets"
-
 **To Test Read and Input**
 * open "localhost:5000/graphql"
-* To Write to DB user following query, but change ID so it is unique: 
+* To Write to DB user following query.
 * mutation{
   createRocket(userInput:{
-    id: "01",
-    name: "Falcon Heavy",
-    date: "20.05.1029"
+    name: "someName",
+    date: "someDate"
   }){
-    id
     name
     date
   }
 }
+* to get all Rockets, type:
+
 
 *Name of Table and Database are just for now. Will change as soon as we continue with development*
