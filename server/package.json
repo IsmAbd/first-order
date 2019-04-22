@@ -24,7 +24,8 @@
     "nodemon": "^1.18.11"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node index.js"
+    "dev": "nodemon --exec babel-node index.js",
+    "conc": "concurrently \"npm run dev\" \"cd ../client/ && npm start\""
   },
   "author": "",
   "license": "ISC"
