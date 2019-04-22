@@ -4,20 +4,21 @@ import { buildSchema } from "graphql";
 export default buildSchema(`
 
 type Rocket {
-    id: String!
+    id: ID!
+    name: String!
+    date: String!
+}
+
+input InputRocket{
     name: String!
     date: String!
 }
 
 
 type RootQuery {
-    allRockets: Rocket
-}
-
-input InputRocket{
-    id: String!
-    name: String!
-    date: String!
+    testReturn: Rocket!
+    findRocketById(id: String!): Rocket!
+    findAllRockets: [Rocket!]!
 }
 
 type RootMutation{

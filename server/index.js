@@ -4,6 +4,7 @@ import expressGraphQL from "express-graphql";
 import cors from "cors";
 import graphQLSchema from "./graphql/schema.js";
 import graphQLResolvers from "./graphql/resolvers";
+import db from "./database/index";
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -22,6 +23,8 @@ app.use(
 );
 
 function main() {
+  db.setup();
+
   app.listen(PORT, () => console.log(`Server is listening on port: ${PORT}`));
 }
 
