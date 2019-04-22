@@ -35,4 +35,6 @@ mutation{
   name
   date
 }}
+
+
 *Name of Table and Database are just for now. Will change as soon as we continue with development*
