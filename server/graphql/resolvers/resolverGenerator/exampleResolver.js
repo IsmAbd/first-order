@@ -1,4 +1,5 @@
 import db from "../../../database/index";
+import models from "../../../models/models";
 //Example Resolvers with two functions
 
 export async function findRocketById(args) {
@@ -29,15 +30,19 @@ export async function createRocket(args) {
     const { name, date } = args.userInput; //retrieve values from arguments
     const Rocket = { name: name, date: date };
 
+    models.addRocket(Rocket).then(result => {
+      console.log(result);
+    });
     //Calls openConnection method which gives a Promise with the connection when resolving
     //Inserts test Rocket
-    db.saveRocket(Rocket)
+
+    /*     db.saveRocket(Rocket)
       .then(result => {
         console.log(result);
       })
       .catch(result => {
         console.log(result);
-      });
+      }); */
 
     return Rocket;
   } catch (error) {

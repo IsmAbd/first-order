@@ -1,26 +1,16 @@
 import r from "rethinkdb";
-import { resolve } from "path";
-import { rejects } from "assert";
-
-var dbConfig = {
-  host: process.env.RDB_HOST || "localhost",
-  port: parseInt(process.env.RDB_PORT) || 28015,
-  db: process.env.RDB_DB || "test",
-  tables: {
-    Rockets: "id"
-  }
-};
+import config from "../config";
 
 module.exports.setup = function() {
-  r.connect({ host: dbConfig.host, port: dbConfig.port }, function(
+  r.connect({ host: config.host, port: config.port }, function(
     err,
     connection
   ) {
-    r.dbCreate(dbConfig.db).run(connection, function(err, result) {
+    r.dbCreate(config.db).run(connection, function(err, result) {
       if (err) {
         console.log(
           "[DEBUG] RethinkDB database '%s' already exists (%s:%s)\n%s",
-          dbConfig.db,
+          config.db,
           err.name,
           err.msg,
           err.message
@@ -29,10 +19,10 @@ module.exports.setup = function() {
         console.log("[INFO ] RethinkDB database '%s' created", dbConfig.db);
       }
 
-      for (var tbl in dbConfig.tables) {
+      for (var tbl in config.tables) {
         (function(tableName) {
-          r.db(dbConfig.db)
-            .tableCreate(tableName, { primaryKey: dbConfig.tables[tbl] })
+          r.db(config.db)
+            .tableCreate(tableName, { primaryKey: config.tables[tbl] })
             .run(connection, function(err, result) {
               if (err) {
                 console.log(
@@ -55,8 +45,8 @@ module.exports.setup = function() {
 module.exports.findRocketById = function(rocketId) {
   return new Promise((resolve, reject) => {
     onConnect(function(err, connection) {
-      r.db(dbConfig["db"])
-        .table("Rockets")
+      r.db(config["db"])
+        .table("Rocket")
         .get(rocketId)
         .run(connection, function(err, result) {
           if (err) {
@@ -81,8 +71,8 @@ module.exports.findRocketById = function(rocketId) {
 module.exports.saveRocket = function(rocket) {
   return new Promise((resolve, reject) => {
     onConnect(function(err, connection) {
-      r.db(dbConfig["db"])
-        .table("Rockets")
+      r.db(config["db"])
+        .table("Rocket")
         .insert(rocket)
         .run(connection, function(err, result) {
           if (err) {
@@ -109,8 +99,8 @@ module.exports.saveRocket = function(rocket) {
 module.exports.findAllRockets = function() {
   return new Promise((resolve, reject) => {
     onConnect(function(err, connection) {
-      r.db(dbConfig["db"])
-        .table("Rockets")
+      r.db(config["db"])
+        .table("Rocket")
         .run(connection, function(err, result) {
           if (err) {
             console.log(
@@ -136,7 +126,7 @@ module.exports.findAllRockets = function() {
 };
 
 function onConnect(callback) {
-  r.connect({ host: dbConfig.host, port: dbConfig.port }, function(
+  r.connect({ host: config.host, port: config.port }, function(
     err,
     connection
   ) {
