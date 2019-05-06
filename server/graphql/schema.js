@@ -3,26 +3,51 @@ import { buildSchema } from "graphql";
 //Building GraphQL Test Schema and exporting it
 export default buildSchema(`
 
-type Rocket {
+
+type Restaurant {
     id: ID!
     name: String!
-    date: String!
+    address: String!
+    payment_method_id: String!
+    tables: [String!]!
 }
 
-input InputRocket{
+
+input InputRestaurant{
     name: String!
-    date: String!
+    address: String!
+    payment_method_id: String!
+}
+
+type User {
+    id: ID!
+    fname: String!
+    lname: String!
+    email: String!
+    token: String!
+    payment_method_id: String
+}
+
+input InputUser{
+    fname: String!
+    lname: String!
+    email: String!
+    password: String!
+    confirmPW: String!
 }
 
 
 type RootQuery {
-    testReturn: Rocket!
-    findRocketById(id: String!): Rocket!
-    findAllRockets: [Rocket!]!
+    getAllRestaurants: [Restaurant!]!
+    getRestaurantByID(id: String!): Restaurant
+    login(email: String!, password: String!): User
+    verifyToken(token: String!):User!
+
 }
 
 type RootMutation{
-    createRocket (userInput: InputRocket): Rocket
+    addRestaurant(userInput: InputRestaurant): Restaurant
+    addUser(userInput: InputUser): User
 }
 
 schema {

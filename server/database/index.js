@@ -42,90 +42,7 @@ module.exports.setup = function() {
   });
 };
 
-module.exports.findRocketById = function(rocketId) {
-  return new Promise((resolve, reject) => {
-    onConnect(function(err, connection) {
-      r.db(config["db"])
-        .table("Rocket")
-        .get(rocketId)
-        .run(connection, function(err, result) {
-          if (err) {
-            console.log(
-              "[ERROR][%s][findUserById] %s:%s\n%s",
-              connection["_id"],
-              err.name,
-              err.msg,
-              err.message
-            );
-
-            reject(result);
-          } else {
-            resolve(result);
-          }
-          connection.close();
-        });
-    });
-  });
-};
-
-module.exports.saveRocket = function(rocket) {
-  return new Promise((resolve, reject) => {
-    onConnect(function(err, connection) {
-      r.db(config["db"])
-        .table("Rocket")
-        .insert(rocket)
-        .run(connection, function(err, result) {
-          if (err) {
-            console.log(
-              "[ERROR][%s][saveMessage] %s:%s\n%s",
-              connection["_id"],
-              err.name,
-              err.msg,
-              err.message
-            );
-          } else {
-            if (result.inserted === 1) {
-              resolve(result);
-            } else {
-              reject(result);
-            }
-          }
-          connection.close();
-        });
-    });
-  });
-};
-
-module.exports.findAllRockets = function() {
-  return new Promise((resolve, reject) => {
-    onConnect(function(err, connection) {
-      r.db(config["db"])
-        .table("Rocket")
-        .run(connection, function(err, result) {
-          if (err) {
-            console.log(
-              "[ERROR][%s][saveMessage] %s:%s\n%s",
-              connection["_id"],
-              err.name,
-              err.msg,
-              err.message
-            );
-          } else {
-            result.toArray((err, results) => {
-              if (results.length > 0) {
-                resolve(results);
-              } else {
-                reject(results);
-              }
-            });
-          }
-          connection.close();
-        });
-    });
-  });
-};
-
-function onConnect(callback) {
+module.exports.onConnect = function(callback) {
   r.connect({ host: config.host, port: config.port }, function(
     err,
     connection
@@ -133,4 +50,4 @@ function onConnect(callback) {
     connection["_id"] = Math.floor(Math.random() * 10001);
     callback(err, connection);
   });
-}
+};
