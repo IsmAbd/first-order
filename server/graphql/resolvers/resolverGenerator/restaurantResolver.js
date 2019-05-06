@@ -1,12 +1,13 @@
 import Restaurant from "../../../models/restaurant";
 
 export async function addRestaurant(args) {
-  const { name, address, paymentMethodID } = args.userInput;
+  const { name, address, paymentMethodID, tables } = args.userInput;
 
   const tempRestaurant = {
     name: name,
     address: address,
-    paymentMethodID: paymentMethodID
+    paymentMethodID: paymentMethodID,
+    tables: tables
   };
 
   var restaurant = new Restaurant(tempRestaurant);

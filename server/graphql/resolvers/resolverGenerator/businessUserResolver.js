@@ -1,47 +1,51 @@
-import User from "../../../models/user";
+import BusinessUser from "../../../models/business-user";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-export async function verifyUserToken(args) {
+export async function verifyBusinessUserToken(args) {
   console.log("Verify Token called");
   try {
     const decoded = jwt.verify(args.token, "mysecret");
-    const user = await User.filter({ id: decoded.id }).then(result => {
-      return result[0];
-    });
-    return { ...user, password: null };
+    const businessUser = await BusinessUser.filter({ id: decoded.id }).then(
+      result => {
+        return result[0];
+      }
+    );
+    return { ...businessUser, password: null };
   } catch (err) {
     throw err;
   }
 }
 
-export async function userLogin(args) {
+export async function businessUserLogin(args) {
   try {
-    const user = await User.filter({ email: args.email }).then(result => {
-      if (!result[0]) {
-        throw new Error("Email does not exist");
-      }
+    const businessUser = await BusinessUser.filter({ email: args.email }).then(
+      result => {
+        if (!result[0]) {
+          throw new Error("Email does not exist");
+        }
 
-      return result[0];
-    }); //looks for user in the database with the given email
+        return result[0];
+      }
+    ); //looks for user in the database with the given email
 
     const passwordIsValid = await bcrypt.compareSync(
       args.password,
-      user.password
+      businessUser.password
     ); //Checks if users password hash equals the saved password hash
     if (!passwordIsValid) throw new Error("Password incorrect"); //Throws error if password hashes are not equal
-    const token = jwt.sign({ id: user.id }, "mysecret");
-    return { token, password: null, ...user };
+    const token = jwt.sign({ id: businessUser.id }, "mysecret");
+    return { token, password: null, ...businessUser };
   } catch (err) {
     throw err;
   }
 }
 
-export async function addUser(args) {
+export async function addBusinessUser(args) {
   try {
     const { fname, lname, email, password, confirmPW } = args.userInput; //retrieve values from arguments
 
-    await User.filter({ email: email }).then(result => {
+    await BusinessUser.filter({ email: email }).then(result => {
       if (result[0]) {
         throw new Error("User already exists!"); //throws error, if user is already there
       }
@@ -53,7 +57,7 @@ export async function addUser(args) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10); //hashes the users pw
-    const user = new User(
+    const businessUser = new BusinessUser(
       {
         fname,
         lname,
@@ -65,14 +69,14 @@ export async function addUser(args) {
       } //Makes new instance of User with new hashed PW and email
     );
 
-    user.save(); //Saves user in db
+    businessUser.save(); //Saves user in db
     // if user is registered without errors
     // create a token
-    const token = jwt.sign({ id: user.id }, "mysecret"); //generates user token with users id assigned to it as well as a secred word which needs to be remembered
+    const token = jwt.sign({ id: businessUser.id }, "mysecret"); //generates user token with users id assigned to it as well as a secred word which needs to be remembered
 
-    console.log(user.fname + "\n" + token);
+    console.log(businessUser.fname + "\n" + token);
 
-    return { token, password: null, ...user }; //returns token
+    return { token, password: null, ...businessUser }; //returns token
   } catch (err) {
     throw err;
   }
