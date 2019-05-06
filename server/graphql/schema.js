@@ -10,6 +10,7 @@ type Restaurant {
     address: String!
     payment_method_id: String
     tables: [String!]!
+
 }
 
 
@@ -17,6 +18,7 @@ input InputRestaurant{
     name: String!
     address: String!
     payment_method_id: String
+
 }
 
 type User {

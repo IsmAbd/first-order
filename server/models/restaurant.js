@@ -1,7 +1,4 @@
-var config = require("../config");
-var thinky = require("thinky")(config);
-var r = thinky.r;
-var Query = thinky.Query;
+var thinky = require("../thinky");
 
 let type = thinky.type;
 
@@ -13,4 +10,8 @@ let Restaurant = thinky.createModel("Restaurant", {
   tables: type.string() //ARRAY
 });
 
-export default Restaurant;
+module.exports = Restaurant;
+
+var BusinessUser = require("./business-user");
+
+Restaurant.belongsTo(BusinessUser, "businessuser", "businessuserId", "id");

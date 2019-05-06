@@ -1,6 +1,4 @@
-var config = require("../config");
-var thinky = require("thinky")(config);
-var r = thinky.r;
+var thinky = require("../thinky");
 
 let type = thinky.type;
 
@@ -13,4 +11,7 @@ let BusinessUser = thinky.createModel("BusinessUser", {
   payment_method_id: type.string() // maybe wants to use account as a customer as well...
 });
 
-export default BusinessUser;
+module.exports = BusinessUser;
+
+var Restaurant = require("./restaurant");
+BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessUserId");
