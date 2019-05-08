@@ -14,4 +14,4 @@ let BusinessUser = thinky.createModel("BusinessUser", {
 module.exports = BusinessUser;
 
 var Restaurant = require("./restaurant");
-BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessUserId");
+BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuserId");

@@ -1,6 +1,7 @@
 import BusinessUser from "../../../models/business-user";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Restaurant from "../../../models/restaurant";
 
 export async function verifyBusinessUserToken(args) {
   console.log("Verify Token called");
@@ -78,4 +79,41 @@ export async function addBusinessUser(args) {
   } catch (err) {
     throw err;
   }
+}
+
+//Function to add 1 restaurant to a business user -> right now its just possible to add one restaurant because theres no
+//Update function yet
+export async function addRestaurantToBusinessUser(args) {
+  //Getting the businessuser
+  var businessUser = await BusinessUser.filter({ id: args.userId }).then(
+    result => {
+      return result[0];
+    }
+  );
+
+  //Getting the restaurant
+  var restaurant = await Restaurant.filter({ id: args.restaurantId }).then(
+    result => {
+      return result[0];
+    }
+  );
+
+  //Adding relationship -> ModelA.relationship = ModelB. relationship was specified as second parameter in the model class (business-user.js & restaurant.js)
+  businessUser.restaurants = restaurant;
+  restaurant.businessuser = businessUser;
+
+  //Saving everything
+  businessUser.saveAll({ restaurants: true }).then(result => {
+    //Error handling...
+  });
+
+  //Getting the result by joining
+  var result = await BusinessUser.filter({ id: businessUser.id })
+    .getJoin({ restaurants: true })
+    .then(result => {
+      return result[0];
+    });
+
+  //returning result to GraphQL
+  return result;
 }

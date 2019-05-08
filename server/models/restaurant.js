@@ -6,6 +6,7 @@ let Restaurant = thinky.createModel("Restaurant", {
   name: type.string(),
   adress: type.string(),
   payment_method_id: type.string(),
+  businessuserId: type.string(),
   tables: type.string() //ARRAY
 });
 

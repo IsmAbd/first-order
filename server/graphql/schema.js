@@ -73,6 +73,8 @@ type RootQuery {
 
     businessUserLogin(email: String!, password: String!): BusinessUser
     verifyBusinessUserToken(token: String!):BusinessUser
+
+    addRestaurantToBusinessUser(userId: String!, restaurantId: String!):BusinessUser!
 }
 
 type RootMutation{

@@ -1,4 +1,5 @@
 import User from "../../../models/user";
+
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -9,7 +10,7 @@ export async function verifyUserToken(args) {
     const user = await User.filter({ id: decoded.id }).then(result => {
       return result[0];
     });
-    return { ...user, password: null };
+    return { password: null, ...user };
   } catch (err) {
     throw err;
   }
