@@ -1,5 +1,13 @@
 import { buildSchema } from "graphql";
 
+//Alle restlichen Models als type abbilden (Patrick)
+//Alle resolver schreiben. (Ismael)
+//Überlegen welche queries benötigt werden (Alle!)
+//Datentypen in allen Models anpassen (Welche Datentypen sind sinnvoll) (Olli, Yannick)
+//Wie verbindet man Relationen --> Relationen erstellen (Alle!!)
+//Kernaufgabe überlegen.
+//--> User loggt sich ein, sieht Produktkarte von Restaurant und kann in den Warenkorb legen + bestellung aufgeben.
+
 //Building GraphQL Test Schema and exporting it
 export default buildSchema(`
 
@@ -10,7 +18,7 @@ type Restaurant {
     address: String!
     payment_method_id: String
     tables: [String!]!
-
+    owner: BusinessUser
 }
 
 
@@ -45,7 +53,7 @@ type BusinessUser{
     email: String!
     token: String!
     payment_method_id: String
-
+    restaurants: [Restaurant!]
 }
 
 input InputBusinessUser{

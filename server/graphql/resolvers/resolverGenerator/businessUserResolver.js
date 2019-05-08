@@ -11,7 +11,7 @@ export async function verifyBusinessUserToken(args) {
         return result[0];
       }
     );
-    return { ...businessUser, password: null };
+    return { password: null, ...businessUser };
   } catch (err) {
     throw err;
   }
@@ -73,8 +73,6 @@ export async function addBusinessUser(args) {
     // if user is registered without errors
     // create a token
     const token = jwt.sign({ id: businessUser.id }, "mysecret"); //generates user token with users id assigned to it as well as a secred word which needs to be remembered
-
-    console.log(businessUser.fname + "\n" + token);
 
     return { token, password: null, ...businessUser }; //returns token
   } catch (err) {

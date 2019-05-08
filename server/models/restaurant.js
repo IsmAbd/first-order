@@ -1,5 +1,4 @@
 var thinky = require("../thinky");
-
 let type = thinky.type;
 
 let Restaurant = thinky.createModel("Restaurant", {
