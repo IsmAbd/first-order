@@ -18,7 +18,7 @@ type Restaurant {
     address: String!
     payment_method_id: String
     tables: [String!]!
-    owner: BusinessUser
+    businessuser: BusinessUser
 }
 
 

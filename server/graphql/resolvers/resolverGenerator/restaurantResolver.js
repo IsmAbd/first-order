@@ -20,26 +20,20 @@ export async function addRestaurant(args) {
 }
 
 export async function getRestaurantByID(args) {
-  var restaurant = await Restaurant.filter({ id: args.id }).then(result => {
-    if (result) {
-      return result;
-    } else {
-      throw new Error("No matching item found");
-    }
-  });
+  var result = await Restaurant.filter({ id: args.id })
+    .getJoin({ businessuser: true })
+    .then(result => {
+      console.log(result[0]);
+      return result[0];
+    });
 
-  return restaurant[0];
+  return result;
 }
 
 export async function getAllRestaurants() {
-  var restaurant = await Restaurant.then(result => {
-    if (result) {
-      console.log(result);
-      return result;
-    } else {
-      throw new Error("No matching item found");
-    }
+  var result = await Restaurant.getJoin({ businessuser: true }).then(result => {
+    return result;
   });
 
-  return restaurant;
+  return result;
 }
