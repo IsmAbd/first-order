@@ -9,6 +9,7 @@ import { buildSchema } from "graphql";
 //--> User loggt sich ein, sieht Produktkarte von Restaurant und kann in den Warenkorb legen + bestellung aufgeben.
 
 //Building GraphQL Test Schema and exporting it
+//waru, sind ids and ID und nicht String definiert?
 export default buildSchema(`
 
 
@@ -81,6 +82,54 @@ type RootMutation{
     addRestaurant(userInput: InputRestaurant): Restaurant
     addUser(userInput: InputUser): User
     addBusinessUser(userInput: InputUser): BusinessUser
+}
+
+type product {
+    id: ID!             
+    name: String!
+    description: String!
+    category: String!
+    type: String!
+    image_path: String
+
+
+}
+input product {
+    name: String!
+    description: String!
+    category: String!
+    type: String!
+}
+
+type price {
+    id: ID!
+    price: String!
+    product: product!
+    fromYear: String
+    toYear: String
+    fromMonth: String
+    toMonth: String
+    fromWeek: String
+    toWeek: String
+    fromDay: String
+    toDay: String
+    fromH_min: String
+    toH_min: String
+}
+
+input price {
+    price: String!
+    product: product!
+    fromYear: String
+    toYear: String
+    fromMonth: String
+    toMonth: String
+    fromWeek: String
+    toWeek: String
+    fromDAy: String
+    toDay: String
+    fromH:min: String
+    toH_min:String
 }
 
 schema {
