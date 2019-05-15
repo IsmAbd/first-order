@@ -66,6 +66,54 @@ input InputBusinessUser{
 }
 
 
+type Product {
+    id: ID!             
+    name: String!
+    description: String!
+    category: String!
+    type: String!
+    image_path: String
+}
+
+input InputProduct {
+    name: String!
+    description: String!
+    category: String!
+    type: String!
+}
+
+type Price {
+    id: ID!
+    price: String!
+    product: Product!
+    fromYear: String
+    toYear: String
+    fromMonth: String
+    toMonth: String
+    fromWeek: String
+    toWeek: String
+    fromDay: String
+    toDay: String
+    fromH_min: String
+    toH_min: String
+}
+
+input InputPrice {
+    price: String!
+    product: Product!
+    fromYear: String
+    toYear: String
+    fromMonth: String
+    toMonth: String
+    fromWeek: String
+    toWeek: String
+    fromDay: String
+    toDay: String
+    fromH_min: String
+    toH_min: String
+}
+
+
 type RootQuery {
     getAllRestaurants: [Restaurant!]!
     getRestaurantByID(id: String!): Restaurant
@@ -82,54 +130,6 @@ type RootMutation{
     addRestaurant(userInput: InputRestaurant): Restaurant
     addUser(userInput: InputUser): User
     addBusinessUser(userInput: InputUser): BusinessUser
-}
-
-type product {
-    id: ID!             
-    name: String!
-    description: String!
-    category: String!
-    type: String!
-    image_path: String
-
-
-}
-input product {
-    name: String!
-    description: String!
-    category: String!
-    type: String!
-}
-
-type price {
-    id: ID!
-    price: String!
-    product: product!
-    fromYear: String
-    toYear: String
-    fromMonth: String
-    toMonth: String
-    fromWeek: String
-    toWeek: String
-    fromDay: String
-    toDay: String
-    fromH_min: String
-    toH_min: String
-}
-
-input price {
-    price: String!
-    product: product!
-    fromYear: String
-    toYear: String
-    fromMonth: String
-    toMonth: String
-    fromWeek: String
-    toWeek: String
-    fromDAy: String
-    toDay: String
-    fromH:min: String
-    toH_min:String
 }
 
 schema {
