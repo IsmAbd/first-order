@@ -1,15 +1,5 @@
-import { buildSchema } from "graphql";
+import {buildSchema} from "graphql";
 
-//Alle restlichen Models als type abbilden (Patrick)
-//Alle resolver schreiben. (Ismael)
-//Überlegen welche queries benötigt werden (Alle!)
-//Datentypen in allen Models anpassen (Welche Datentypen sind sinnvoll) (Olli, Yannick)
-//Wie verbindet man Relationen --> Relationen erstellen (Alle!!)
-//Kernaufgabe überlegen.
-//--> User loggt sich ein, sieht Produktkarte von Restaurant und kann in den Warenkorb legen + bestellung aufgeben.
-
-//Building GraphQL Test Schema and exporting it
-//waru, sind ids and ID und nicht String definiert?
 export default buildSchema(`
 
 
@@ -130,6 +120,7 @@ type RootMutation{
     addRestaurant(userInput: InputRestaurant): Restaurant
     addUser(userInput: InputUser): User
     addBusinessUser(userInput: InputUser): BusinessUser
+    addProduct(userInput: InputProduct): Product
 }
 
 schema {

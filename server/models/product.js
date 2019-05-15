@@ -1,7 +1,4 @@
-var config = require("../config");
-var thinky = require("thinky")(config);
-var r = thinky.r;
-
+var thinky = require("../thinky");
 let type = thinky.type;
 
 let Product = thinky.createModel("Product", {
@@ -13,18 +10,4 @@ let Product = thinky.createModel("Product", {
   image_path: type.string()
 });
 
-exports.addProduct = function(product) {
-  var newProduct = new Product(product);
-
-  var temp = newProduct.save().then(result => {
-    return result;
-  });
-  return temp;
-};
-
-function handleError(res) {
-  return function(error) {
-    console.log(error.message);
-    return res.send(500, { error: error.message });
-  };
-}
+module.exports = Product;
