@@ -13,5 +13,4 @@ let Restaurant = thinky.createModel("Restaurant", {
 module.exports = Restaurant;
 
 var BusinessUser = require("./business-user");
-
 Restaurant.belongsTo(BusinessUser, "businessuser", "businessuserId", "id");

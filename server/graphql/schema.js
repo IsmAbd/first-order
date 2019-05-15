@@ -55,12 +55,20 @@ input InputBusinessUser{
     confirmPW: String!
 }
 
+type Category {
+    id: ID!
+    name: String!
+}
+
+input InputCategory{
+    name: String!
+}
 
 type Product {
     id: ID!             
     name: String!
     description: String!
-    category: String!
+    category: Category!
     type: String!
     image_path: String
 }
@@ -68,7 +76,7 @@ type Product {
 input InputProduct {
     name: String!
     description: String!
-    category: String!
+    category: Category!
     type: String!
 }
 
