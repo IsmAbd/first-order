@@ -76,7 +76,6 @@ type Product {
 input InputProduct {
     name: String!
     description: String!
-    category: Category!
     type: String!
 }
 
@@ -98,7 +97,6 @@ type Price {
 
 input InputPrice {
     price: String!
-    product: Product!
     fromYear: String
     toYear: String
     fromMonth: String
