@@ -1,5 +1,4 @@
 import Restaurant from "../../../models/restaurant";
-import BusinessUser from "../../../models/business-user";
 
 export async function addRestaurant(args) {
   const { name, address, paymentMethodID, tables } = args.userInput;

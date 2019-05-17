@@ -1,15 +1,5 @@
-import { buildSchema } from "graphql";
+import {buildSchema} from "graphql";
 
-//Alle restlichen Models als type abbilden (Patrick)
-//Alle resolver schreiben. (Ismael)
-//Überlegen welche queries benötigt werden (Alle!)
-//Datentypen in allen Models anpassen (Welche Datentypen sind sinnvoll) (Olli, Yannick)
-//Wie verbindet man Relationen --> Relationen erstellen (Alle!!)
-//Kernaufgabe überlegen.
-//--> User loggt sich ein, sieht Produktkarte von Restaurant und kann in den Warenkorb legen + bestellung aufgeben.
-
-//Building GraphQL Test Schema and exporting it
-//waru, sind ids and ID und nicht String definiert?
 export default buildSchema(`
 
 
@@ -65,12 +55,20 @@ input InputBusinessUser{
     confirmPW: String!
 }
 
+type Category {
+    id: ID!
+    name: String!
+}
+
+input InputCategory{
+    name: String!
+}
 
 type Product {
     id: ID!             
     name: String!
     description: String!
-    category: String!
+    category: Category!
     type: String!
     image_path: String
 }
@@ -78,7 +76,6 @@ type Product {
 input InputProduct {
     name: String!
     description: String!
-    category: String!
     type: String!
 }
 
@@ -100,7 +97,6 @@ type Price {
 
 input InputPrice {
     price: String!
-    product: Product!
     fromYear: String
     toYear: String
     fromMonth: String
@@ -130,6 +126,7 @@ type RootMutation{
     addRestaurant(userInput: InputRestaurant): Restaurant
     addUser(userInput: InputUser): User
     addBusinessUser(userInput: InputUser): BusinessUser
+    addProduct(userInput: InputProduct): Product
 }
 
 schema {
