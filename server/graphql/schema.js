@@ -1,7 +1,35 @@
-import {buildSchema} from "graphql";
+import { buildSchema } from "graphql";
 
 export default buildSchema(`
 
+type Order {
+    id: ID!
+    user: User!
+    restaurant: Restaurant!
+    tableNumber: Int!
+    orderStatus: Int!
+    time: String!
+    paid: Boolean!
+    products: OrderedProduct!
+
+}
+
+
+type OrderedProduct{
+    id: ID!
+    product: Product!
+    order: Order!
+    price: Price!
+    amount: Int!
+    wish: String!
+
+}
+
+type MenuCard{
+    id: ID!
+    restaurant: Restaurant!
+    products: [Product!]
+}
 
 type Restaurant {
     id: ID!
@@ -10,12 +38,15 @@ type Restaurant {
     payment_method_id: String
     tables: [String!]!
     businessuser: BusinessUser
+    menuCard: MenuCard!
+    orders: [Order!]
 }
 
 
 input InputRestaurant{
     name: String!
     address: String!
+    businessUserID: String!
     payment_method_id: String
 
 }
@@ -27,6 +58,7 @@ type User {
     email: String!
     token: String!
     payment_method_id: String
+    orders: [Order!]
 }
 
 input InputUser{
@@ -58,6 +90,7 @@ input InputBusinessUser{
 type Category {
     id: ID!
     name: String!
+    products: [Product!]
 }
 
 input InputCategory{
@@ -71,6 +104,7 @@ type Product {
     category: Category!
     type: String!
     image_path: String
+    price: Price!
 }
 
 input InputProduct {
@@ -82,7 +116,6 @@ input InputProduct {
 type Price {
     id: ID!
     price: String!
-    product: Product!
     fromYear: String
     toYear: String
     fromMonth: String
@@ -119,7 +152,6 @@ type RootQuery {
     businessUserLogin(email: String!, password: String!): BusinessUser
     verifyBusinessUserToken(token: String!):BusinessUser
 
-    addRestaurantToBusinessUser(userId: String!, restaurantId: String!):BusinessUser!
 }
 
 type RootMutation{

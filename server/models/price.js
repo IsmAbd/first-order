@@ -17,9 +17,7 @@ let Price = thinky.createModel("Price", {
   fromDay: type.string(),
   toDay: type.string(),
   fromH_min: type.string(),
-  toH_min: type.string(),
-
-
+  toH_min: type.string()
 });
 
 exports.addPrice = function(price) {
