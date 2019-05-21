@@ -148,6 +148,10 @@ input InputPrice {
 }
 
 
+
+
+
+
 type RootQuery {
     getAllRestaurants: [Restaurant!]!
     getRestaurantByID(id: String!): Restaurant

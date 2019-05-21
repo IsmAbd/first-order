@@ -14,4 +14,8 @@ let OrderedProduct = thinky.createModel("OrderedProduct", {
 module.exports = OrderedProduct;
 
 var Product = require("./product");
-OrderedProduct.hasOne(Product, "products", "productId", "Id");
+OrderedProduct.belongsTo(Product, "products", "productId", "id");
+var Price = require("./price");
+OrderedProduct.belongsTo(Price, "price","priceId", "id");
+var Order = require("./order");
+OrderedProduct.belongsTo(Order, "order", "orderId", "id");

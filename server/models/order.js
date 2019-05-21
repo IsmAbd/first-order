@@ -24,9 +24,9 @@ module.exports = Order;
 
 //user hat viele Order
 var User = require("./user");
-Order.belongsTo(User, "users", "id", "userID");
+Order.belongsTo(User, "users", "id", "user_id");
 //restaurant hat viele Order
 var Restaurant = require("./restaurant");
-Order.belongsTo(Restaurant, "restaurants", "id", "restaurantID");
+Order.belongsTo(Restaurant, "restaurant", "restaurant_id", "id");//nicht sicher, ob das so richtig ist
 //order hat viele ordererdproducts
 
