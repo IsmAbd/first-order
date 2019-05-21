@@ -10,35 +10,33 @@ type Order {
     orderStatus: Int!
     time: String!
     paid: Boolean!
-    products: OrderedProduct!
+    products: [OrderedProduct!]!
+}
 
+input InputOrder {
+    tableNumber: Int!
+    orderStatus: Int!
+    time: String!
+    paid: Boolean!
 }
 
 
 type OrderedProduct{
     id: ID!
     product: Product!
-    order: Order!
     price: Price!
     amount: Int!
     wish: String!
-
-}
-
-type MenuCard{
-    id: ID!
-    restaurant: Restaurant!
-    products: [Product!]
 }
 
 type Restaurant {
     id: ID!
     name: String!
     address: String!
-    payment_method_id: String
+    payment_methods: [Payment_Method!]
     tables: [String!]!
-    businessuser: BusinessUser
-    menuCard: MenuCard!
+    businessUsers: [BusinessUser!]
+    products: [Product!]
     orders: [Order!]
 }
 
@@ -47,8 +45,6 @@ input InputRestaurant{
     name: String!
     address: String!
     businessUserID: String!
-    payment_method_id: String
-
 }
 
 type User {
@@ -57,7 +53,7 @@ type User {
     lname: String!
     email: String!
     token: String!
-    payment_method_id: String
+    payment_methods: [Payment_Method!]
     orders: [Order!]
 }
 
@@ -75,8 +71,18 @@ type BusinessUser{
     lname: String!
     email: String!
     token: String!
-    payment_method_id: String
+    payment_methods: [Payment_Method!]
     restaurants: [Restaurant!]
+}
+
+type Payment_Method{
+    id: ID!
+    name: String!
+}
+
+
+input InputPayment_Method{
+    name: String!
 }
 
 input InputBusinessUser{
@@ -90,7 +96,6 @@ input InputBusinessUser{
 type Category {
     id: ID!
     name: String!
-    products: [Product!]
 }
 
 input InputCategory{
@@ -115,32 +120,36 @@ input InputProduct {
 
 type Price {
     id: ID!
-    price: String!
-    fromYear: String
-    toYear: String
-    fromMonth: String
-    toMonth: String
-    fromWeek: String
-    toWeek: String
-    fromDay: String
-    toDay: String
+    price:Float!
+    fromYear: Int
+    toYear: Int
+    fromMonth: Int
+    toMonth: Int
+    fromWeek: Int
+    toWeek: Int
+    fromDay: Int
+    toDay: Int
     fromH_min: String
     toH_min: String
 }
 
 input InputPrice {
-    price: String!
-    fromYear: String
-    toYear: String
-    fromMonth: String
-    toMonth: String
-    fromWeek: String
-    toWeek: String
-    fromDay: String
-    toDay: String
+    price: Float!
+    fromYear: Int
+    toYear: Int
+    fromMonth: Int
+    toMonth: Int
+    fromWeek: Int
+    toWeek: Int
+    fromDay: Int
+    toDay: Int
     fromH_min: String
     toH_min: String
 }
+
+
+
+
 
 
 type RootQuery {

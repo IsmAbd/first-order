@@ -1,4 +1,8 @@
 
+Payment methods in User und Restaurants im Model ergänzen (auch Resolver?)
+
+
+
 //Alle restlichen Models als type abbilden (Patrick)
 //Alle resolver schreiben. (Ismael)
 //Überlegen welche queries benötigt werden (Alle!)
@@ -9,3 +13,4 @@
 
 //Building GraphQL Test Schema and exporting it
 //waru, sind ids and ID und nicht String definiert?
+
