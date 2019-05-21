@@ -1,5 +1,5 @@
-var thinky = require("../thinky");
-let type = thinky.type;
+const thinky = require("../thinky");
+const type = thinky.type;
 
 let MenuCard = thinky.createModel("MenuCard", {
     id: type.string(),
@@ -9,7 +9,7 @@ let MenuCard = thinky.createModel("MenuCard", {
 
 });
 module.exports = MenuCard;
-var Restaurant = require("./restaurant");
+const Restaurant = require("./restaurant");
 MenuCard.hasOne(Restaurant, "restaurant", "restaurantId", "id");
-var Product = require("./product");
+const Product = require("./product");
 //stimmt die relation im Datenmodell?

@@ -23,10 +23,13 @@ module.exports = Order;
 //hat einen OrderStatus
 
 //user hat viele Order
-var User = require("./user");
+const User = require("./user");
 Order.belongsTo(User, "users", "id", "user_id");
 //restaurant hat viele Order
-var Restaurant = require("./restaurant");
+const Restaurant = require("./restaurant");
 Order.belongsTo(Restaurant, "restaurant", "restaurant_id", "id");//nicht sicher, ob das so richtig ist
 //order hat viele ordererdproducts
+const OrderedProduct = require("./orderedProduct");
+order.hasMany(OrderedProduct, "products", "id", "orderId");
+
 
