@@ -8,6 +8,8 @@ import Button from "@material-ui/core/Button";
 import * as routes from "../../constants/routes";
 import { Link } from "react-router-dom";
 
+//Navbar for not validated business user/user
+
 const styles = {
   root: {
     flexGrow: 1

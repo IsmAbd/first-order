@@ -3,6 +3,8 @@ import SULogin from "../Login/SULogin";
 import SUSignup from "../Signup/SUSignup";
 import { withRouter } from "react-router-dom";
 
+//Page for Business User Login and Signup
+
 function SUAccess() {
   return (
     <div>

@@ -3,6 +3,8 @@ import { useMappedState } from "redux-react-hook";
 import AuthNavigation from "./buAuth";
 import NonAuthNavigation from "./nonAuth";
 
+//component decides which navigation to show based on users authentication status
+
 function Navigation() {
   const mapState = useCallback(
     state => ({

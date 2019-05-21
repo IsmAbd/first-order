@@ -11,6 +11,8 @@ import useWithAuthenticate from "../WithAuthenticate";
 import { useMappedState } from "redux-react-hook";
 import Navigation from "../Navbar";
 
+//Last component before root component
+
 const client = new ApolloClient({
   uri: "http://localhost:5000/graphql"
 });

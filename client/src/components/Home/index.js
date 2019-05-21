@@ -3,6 +3,8 @@ import { useMappedState } from "redux-react-hook";
 import AuthHome from "./auth";
 import NonAuthHome from "./nonauth";
 
+//Component decides which page is shown, depending of the users authentication status
+
 function Home() {
   const mapState = useCallback(
     state => ({

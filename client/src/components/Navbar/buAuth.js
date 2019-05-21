@@ -14,6 +14,8 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
 
+//Navbar for validated business user/user
+
 const styles = {
   root: {
     flexGrow: 1

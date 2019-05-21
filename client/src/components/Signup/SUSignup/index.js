@@ -12,6 +12,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
+//Signup component for single user
+
 function SUSignup(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

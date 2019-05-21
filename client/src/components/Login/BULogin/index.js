@@ -12,6 +12,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
+//Login for Business User
+
 function BULogin(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

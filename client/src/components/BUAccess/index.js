@@ -3,6 +3,7 @@ import BULogin from "../Login/BULogin";
 import BUSignup from "../Signup/BUSignup";
 import { withRouter } from "react-router-dom";
 
+//Page for Business User Login and Signup
 function BUAccess() {
   return (
     <div>
