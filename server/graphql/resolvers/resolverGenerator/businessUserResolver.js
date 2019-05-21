@@ -11,7 +11,7 @@ export async function verifyBusinessUserToken(args) {
         return result[0];
       }
     );
-    return { password: null, ...businessUser };
+    return { ...businessUser, password: null };
   } catch (err) {
     throw err;
   }
@@ -69,10 +69,13 @@ export async function addBusinessUser(args) {
       } //Makes new instance of User with new hashed PW and email
     );
 
-    businessUser.save(); //Saves user in db
+    let result = await businessUser.save().then(result => {
+      return result;
+    }); //Saves user in db
     // if user is registered without errors
     // create a token
-    const token = jwt.sign({ id: businessUser.id }, "mysecret"); //generates user token with users id assigned to it as well as a secred word which needs to be remembered
+
+    const token = jwt.sign({ id: result.id }, "mysecret"); //generates user token with users id assigned to it as well as a secred word which needs to be remembered
 
     return { token, password: null, ...businessUser }; //returns token
   } catch (err) {

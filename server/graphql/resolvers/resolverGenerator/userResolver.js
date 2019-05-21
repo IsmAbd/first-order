@@ -10,7 +10,7 @@ export async function verifyUserToken(args) {
     const user = await User.filter({ id: decoded.id }).then(result => {
       return result[0];
     });
-    return { password: null, ...user };
+    return { ...user, password: null };
   } catch (err) {
     throw err;
   }
@@ -66,12 +66,12 @@ export async function addUser(args) {
       } //Makes new instance of User with new hashed PW and email
     );
 
-    user.save(); //Saves user in db
+    let result = await user.save().then(result => {
+      return result;
+    }); //Saves user in db
     // if user is registered without errors
     // create a token
-    const token = jwt.sign({ id: user.id }, "mysecret"); //generates user token with users id assigned to it as well as a secred word which needs to be remembered
-
-    console.log(user.fname + "\n" + token);
+    const token = jwt.sign({ id: result.id }, "mysecret"); //generates user token with users id assigned to it as well as a secred word which needs to be remembered
 
     return { token, password: null, ...user }; //returns token
   } catch (err) {

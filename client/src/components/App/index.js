@@ -4,8 +4,8 @@ import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import * as routes from "../../constants/routes";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import BULogin from "../BULogin/BULogin";
-import SULogin from "../SULogin/SULogin";
+import BUAccess from "../BUAccess";
+import SUAccess from "../SUAccess";
 import Home from "../Home";
 import useWithAuthenticate from "../WithAuthenticate";
 import { useMappedState } from "redux-react-hook";
@@ -37,12 +37,12 @@ function App() {
               <Route
                 exact
                 path={routes.BULOGIN}
-                component={() => <BULogin />}
+                component={() => <BUAccess />}
               />
               <Route
                 exact
                 path={routes.SULOGIN}
-                component={() => <SULogin />}
+                component={() => <SUAccess />}
               />
             </Switch>
           </header>

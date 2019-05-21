@@ -2,15 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "redux-react-hook";
 import { withRouter } from "react-router-dom";
-import * as actions from "../../constants/actions_types";
-import * as routes from "../../constants/routes";
+import * as actions from "../../../constants/actions_types";
+import * as routes from "../../../constants/routes";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
-function Login(props) {
+function BULogin(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPW, setConfirmPW] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleChange = setter => e => {
     setter(e.target.value);
@@ -18,10 +25,17 @@ function Login(props) {
 
   const dispatch = useDispatch();
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const submit = async e => {
     e.preventDefault();
     setLoading(true);
-
+    setOpen(false);
     try {
       const requestBody = {
         query: `
@@ -63,36 +77,48 @@ function Login(props) {
       setLoading(false);
     }
   };
+
   return (
     <>
-      <h1>Login</h1>
-      <div className="auth-form">
-        <form onSubmit={submit}>
-          <input
-            className="form-input"
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Login
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Login</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Login to start you business</DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Email Address"
             type="email"
-            placeholder="Email"
-            value={email}
+            fullWidth
             onChange={handleChange(setEmail)}
           />
-          <input
-            className="form-input"
+          <TextField
+            margin="dense"
+            id="name"
+            label="Password"
             type="password"
-            placeholder="Password"
-            value={password}
+            fullWidth
             onChange={handleChange(setPassword)}
           />
-          <div>
-            <span style={{ color: "red" }}>{error || ""}</span>
-          </div>
-          <input
-            className="form-submit"
-            type="submit"
-            value={loading ? "Verifying..." : "Register"}
-          />
-        </form>
-      </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={submit} color="primary">
+            Login
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
-export default withRouter(Login);
+export default withRouter(BULogin);
