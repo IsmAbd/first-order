@@ -1,6 +1,6 @@
 import React from "react";
-import SULogin from "../Login/SULogin";
-import SUSignup from "../Signup/SUSignup";
+import SULogin from "../SULogin";
+import SUSignup from "../SUSignup";
 import { withRouter } from "react-router-dom";
 
 //Page for Business User Login and Signup

@@ -2,19 +2,29 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "redux-react-hook";
 import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import Typography from "@material-ui/core/Typography";
+import withStyles from "@material-ui/core/styles/withStyles";
 import * as actions from "../../../constants/actions_types";
 import * as routes from "../../../constants/routes";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 
-//Signup component for business user
+const styles = theme => ({
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing.unit
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 3
+  }
+});
 
-function BUSignup(props) {
+function Signup(props) {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
@@ -22,25 +32,16 @@ function BUSignup(props) {
   const [confirmPW, setConfirmPW] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
+
+  const { classes } = props;
 
   const handleChange = setter => e => {
     setter(e.target.value);
   };
 
-  const dispatch = useDispatch();
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   const submit = async e => {
     e.preventDefault();
     setLoading(true);
-    setOpen(false);
     try {
       const requestBody = {
         query: `
@@ -91,72 +92,74 @@ function BUSignup(props) {
   };
 
   return (
-    <>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Signup
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">Login</DialogTitle>
-        <DialogContent>
-          <DialogContentText>SignUp to start you business</DialogContentText>
-          <TextField
+    <div>
+      <Typography component="h1" variant="h5">
+        Business User Signup
+      </Typography>
+      <form className={classes.form}>
+        <FormControl margin="normal" required fullWidth>
+          <InputLabel htmlFor="email">First Name</InputLabel>
+          <Input
+            id="fname"
+            name="fname"
+            autoComplete="fname"
             autoFocus
-            margin="dense"
-            id="name"
-            label="First Name"
-            type="text"
-            fullWidth
             onChange={handleChange(setFname)}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Last Name"
-            type="text"
-            fullWidth
+        </FormControl>
+        <FormControl margin="normal" required fullWidth>
+          <InputLabel htmlFor="email">Last Name</InputLabel>
+          <Input
+            id="lname"
+            name="lname"
+            autoComplete="lname"
             onChange={handleChange(setLname)}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="E-Mail"
-            type="email"
-            fullWidth
+        </FormControl>
+        <FormControl margin="normal" required fullWidth>
+          <InputLabel htmlFor="email">Email Address</InputLabel>
+          <Input
+            id="email"
+            name="email"
+            autoComplete="email"
             onChange={handleChange(setEmail)}
           />
-          <TextField
-            margin="dense"
-            id="name"
-            label="Password"
+        </FormControl>
+        <FormControl margin="normal" required fullWidth>
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <Input
+            name="password"
             type="password"
-            fullWidth
+            id="password"
             onChange={handleChange(setPassword)}
           />
-          <TextField
-            margin="dense"
-            id="name"
-            label="Confirm Password"
+        </FormControl>
+        <FormControl margin="normal" required fullWidth>
+          <InputLabel htmlFor="password">Confirm Password</InputLabel>
+          <Input
+            name="confirmpassword"
             type="password"
-            fullWidth
+            id="confirmpassword"
             onChange={handleChange(setConfirmPW)}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={submit} color="primary">
-            SignUp
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </>
+        </FormControl>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onClick={submit}
+        >
+          SignUp
+        </Button>
+      </form>
+    </div>
   );
 }
-export default withRouter(BUSignup);
+
+Signup.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withRouter(withStyles(styles)(Signup));

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useMappedState } from "redux-react-hook";
-import AuthHome from "./auth";
+import AuthHome from "../BusinessUser/BUDashboard/dashboard";
 import NonAuthHome from "./nonauth";
 
 //Component decides which page is shown, depending of the users authentication status

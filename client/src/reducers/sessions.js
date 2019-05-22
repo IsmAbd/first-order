@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 };
 function sessionReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case "SET_AUTH_USER": {
+    case SET_AUTH_USER: {
       return { authUser: action.authUser, loading: false };
     }
     default:

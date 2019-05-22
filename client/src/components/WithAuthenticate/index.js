@@ -29,7 +29,7 @@ async function authenticate(dispatch) {
         dispatch({
           type: actions.SET_AUTH_USER,
           authUser: {
-            id: user._id,
+            id: user.id,
             email: user.email
           }
         });
