@@ -1,4 +1,4 @@
-import {buildSchema} from "graphql";
+import { buildSchema } from "graphql";
 
 export default buildSchema(`
 
@@ -151,7 +151,7 @@ input InputPrice {
 type RootQuery {
     getAllRestaurants: [Restaurant]!
     getRestaurantByID(id: String!): Restaurant
-    getRestaurantsByBU(businessUser_id: ID) [Restaurant]
+    getRestaurantsByBU(businessUser_id: ID): [Restaurant]
     
     getProductsByRestaurant(restaurant_id: ID!): [Product]
     getProductsByRestaurantAndCategory(restaurant_id: ID!, category_name: String!): [Product]
