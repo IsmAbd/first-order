@@ -8,7 +8,7 @@ export async function addProduct(args) {
         description: description,
         category: category,
         type: type,
-        image_path:image_path
+        image_path: image_path
     };
 
     var product = new Product(tempProduct);
