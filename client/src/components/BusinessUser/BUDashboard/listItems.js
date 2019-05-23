@@ -1,31 +1,25 @@
-import React from "react";
-import { useDispatch } from "redux-react-hook";
+import React, { useState } from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import SettingsIcon from "@material-ui/icons/Settings";
 import PeopleIcon from "@material-ui/icons/People";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
-import * as actions from "../../../constants/actions_types";
 import List from "@material-ui/core/List";
+import { connect } from "react-redux";
+import { bulogout } from "../../../actions/authActions";
 
-function ListItems() {
-  const dispatch = useDispatch();
-
+function ListItems(props) {
   function logout() {
-    dispatch({
-      type: actions.SET_AUTH_USER,
-      authUser: null
-    });
-
-    localStorage.removeItem("token");
+    props.bulogout();
   }
 
   return (
     <List>
-      <ListItem button>
+      <ListItem button value="Test">
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
@@ -49,6 +43,12 @@ function ListItems() {
         </ListItemIcon>
         <ListItemText primary="Reports" />
       </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <SettingsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Settings" />
+      </ListItem>
       <ListItem button onClick={logout}>
         <ListItemIcon>
           <LayersIcon />
@@ -59,4 +59,7 @@ function ListItems() {
   );
 }
 
-export default ListItems;
+export default connect(
+  null,
+  { bulogout }
+)(ListItems);

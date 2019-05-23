@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useDispatch } from "redux-react-hook";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
@@ -9,8 +8,7 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
-import * as actions from "../../../constants/actions_types";
-import * as routes from "../../../constants/routes";
+import { bulogin } from "../../../actions/authActions";
 
 const styles = theme => ({
   form: {
@@ -23,8 +21,6 @@ const styles = theme => ({
 });
 
 function Login(props) {
-  const dispatch = useDispatch();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -39,46 +35,7 @@ function Login(props) {
   const submit = async e => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const requestBody = {
-        query: `
-                      query {
-                        businessUserLogin(email: "${email}", password: "${password}") {
-                              id
-                              token
-                              email
-                          }
-                      }
-                  `
-      };
-
-      const { data } = await axios.post(
-        "http://localhost:5000/graphql",
-        requestBody
-      );
-
-      if (data.errors) {
-        setError(data.errors[0].message);
-        setLoading(false);
-      } else {
-        setError(null);
-        setLoading(false);
-        const { id, token } = await data.data.businessUserLogin;
-
-        dispatch({
-          type: actions.SET_AUTH_USER,
-          authUser: {
-            id,
-            email
-          }
-        });
-        localStorage.setItem("token", token);
-        props.history.push(routes.HOME);
-      }
-    } catch (e) {
-      setError(e);
-      setLoading(false);
-    }
+    props.bulogin(props, email, password);
   };
 
   return (
@@ -122,8 +79,17 @@ function Login(props) {
   );
 }
 
+function mapStateToProps(state) {
+  return {
+    authUser: state.sessionState.authUser
+  };
+}
+
 Login.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withRouter(withStyles(styles)(Login));
+export default connect(
+  mapStateToProps,
+  { bulogin }
+)(withRouter(withStyles(styles)(Login)));

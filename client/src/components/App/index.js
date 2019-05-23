@@ -1,26 +1,22 @@
-import React, { useCallback } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import * as routes from "../../constants/routes";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import BUAccess from "../BusinessUser/BUAccess";
 import SUAccess from "../SingleUser/SUAccess";
 import Home from "../Home";
-import useWithAuthenticate from "../WithAuthenticate";
-import { useMappedState } from "redux-react-hook";
+import { connect } from "react-redux";
 import Navigation from "../Navbar";
+import { buauth } from "../../actions/authActions";
 
 //Last component before root component
 
-function App() {
-  useWithAuthenticate();
-  const mapState = useCallback(
-    state => ({
-      loading: state.sessionState.loading
-    }),
-    []
-  );
-  const { loading } = useMappedState(mapState);
-  if (loading) return <h1>Loading...</h1>;
+function App(props, { loading }) {
+  useEffect(() => {
+    props.buauth();
+  });
+
+  if (loading) return <h1>Pimmel....</h1>;
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
@@ -38,4 +34,13 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    loading: state.sessionState.loading
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { buauth }
+)(App);

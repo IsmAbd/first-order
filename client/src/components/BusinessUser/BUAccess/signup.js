@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useDispatch } from "redux-react-hook";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
@@ -9,8 +8,7 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
-import * as actions from "../../../constants/actions_types";
-import * as routes from "../../../constants/routes";
+import { busignup } from "../../../actions/authActions";
 
 const styles = theme => ({
   form: {
@@ -23,8 +21,6 @@ const styles = theme => ({
 });
 
 function Signup(props) {
-  const dispatch = useDispatch();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
@@ -42,53 +38,8 @@ function Signup(props) {
   const submit = async e => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const requestBody = {
-        query: `
-                  mutation {
-                    addBusinessUser(userInput: {
-                    fname: "${fname}", 
-                    lname: "${lname}", 
-                    email: "${email}", 
-                    password: "${password}", 
-                    confirmPW: "${confirmPW}"}){
-                          id
-                          token
-                          email
-                      }
-                  }
-              `
-      };
 
-      const { data } = await axios.post(
-        "http://localhost:5000/graphql",
-        requestBody
-      );
-
-      if (data.errors) {
-        setError(data.errors[0].message);
-        setLoading(false);
-      } else {
-        setError(null);
-        setLoading(false);
-        const { id, token } = await data.data.addBusinessUser;
-
-        console.log(id + " " + token);
-
-        dispatch({
-          type: actions.SET_AUTH_USER,
-          authUser: {
-            id,
-            email
-          }
-        });
-        localStorage.setItem("token", token);
-        props.history.push(routes.HOME);
-      }
-    } catch (e) {
-      setError(e);
-      setLoading(false);
-    }
+    props.busignup(props, fname, lname, email, password, confirmPW);
   };
 
   return (
@@ -158,8 +109,17 @@ function Signup(props) {
   );
 }
 
+function mapStateToProps(state) {
+  return {
+    authUser: state.sessionState.authUser
+  };
+}
+
 Signup.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withRouter(withStyles(styles)(Signup));
+export default connect(
+  mapStateToProps,
+  { busignup }
+)(withRouter(withStyles(styles)(Signup)));

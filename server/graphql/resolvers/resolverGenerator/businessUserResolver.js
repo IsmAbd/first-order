@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export async function verifyBusinessUserToken(args) {
-  console.log("Verify Token called");
+  console.log("VerifyBusinessUserToken called");
   try {
     const decoded = jwt.verify(args.token, "mysecret");
     const businessUser = await BusinessUser.filter({ id: decoded.id }).then(

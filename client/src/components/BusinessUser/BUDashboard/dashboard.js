@@ -14,6 +14,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import ListItems from "./listItems";
+import RestaurantSelection from "../RestaurantSelection";
 
 const drawerWidth = 240;
 
@@ -135,6 +136,8 @@ function Dashboard(props) {
           >
             Dashboard
           </Typography>
+          <RestaurantSelection />
+
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />

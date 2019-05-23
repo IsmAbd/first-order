@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "redux-react-hook";
 import { withRouter } from "react-router-dom";
-import * as actions from "../../../constants/actions_types";
+import * as actions from "../../../actions/actions_types";
 import * as routes from "../../../constants/routes";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
