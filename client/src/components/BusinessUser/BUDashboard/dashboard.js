@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
@@ -95,7 +96,7 @@ const styles = theme => ({
   }
 });
 
-function Dashboard(props) {
+function Dashboard(props, { activeRestaurant }) {
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -166,10 +167,14 @@ function Dashboard(props) {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Typography variant="h4" gutterBottom component="h2">
+          {props.activeRestaurant.name}
+        </Typography>
+        <Divider />
+        <Typography variant="h5" gutterBottom component="h2">
           Orders
         </Typography>
         <Typography component="div" className={classes.chartContainer} />
-        <Typography variant="h4" gutterBottom component="h2">
+        <Typography variant="h5" gutterBottom component="h2">
           Products
         </Typography>
         <div className={classes.tableContainer} />
@@ -182,4 +187,10 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Dashboard);
+function mapStateToProps(state) {
+  return {
+    activeRestaurant: state.restaurantState.activeRestaurant
+  };
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(Dashboard));
