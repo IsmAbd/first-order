@@ -7,7 +7,7 @@ let type = thinky.type;
 let Price = thinky.createModel("Price", {
   id: type.string(),
   price: type.string(),
-  product: type.product,
+  productid: type.string(),
   fromYear: type.string(),
   toYear: type.string(),
   fromMonth: type.string(),

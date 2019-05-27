@@ -14,3 +14,5 @@ module.exports = Product;
 
 var Category = require("./category");
 Product.belongsTo(Category, "category", "categoryId", "id");
+
+

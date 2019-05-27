@@ -7,15 +7,15 @@ let OrderedProduct = thinky.createModel("OrderedProduct", {
     orderId: type.string(),
     priceId: type.string(),
     amount: type.number(),
-    specialWish: type.string()
+    wish: type.string()
 
 });
 
 module.exports = OrderedProduct;
 
-var Product = require("./product");
-OrderedProduct.belongsTo(Product, "products", "productId", "id");
-var Price = require("./price");
-OrderedProduct.belongsTo(Price, "price","priceId", "id");
+var Product = require("./product");//hat ein Product
+OrderedProduct.hasOne(Product, "product", "productId", "id");
+var Price = require("./price");//hat einen Preis
+OrderedProduct.hasOne(Price, "price","priceId", "id");
 var Order = require("./order");
-OrderedProduct.belongsTo(Order, "order", "orderId", "id");
+OrderedProduct.belongsTo(Order, "order", "orderId", "id");//ordered products belong to an order
