@@ -1,21 +1,22 @@
 import React, { useCallback } from "react";
-import { useMappedState } from "redux-react-hook";
-import AuthHome from "./auth";
+import { connect } from "react-redux";
+import AuthHome from "../BusinessUser/BUDashboard/dashboard";
 import NonAuthHome from "./nonauth";
+import LoadingStatus from "../LoadingStatus";
 
 //Component decides which page is shown, depending of the users authentication status
 
-function Home() {
-  const mapState = useCallback(
-    state => ({
-      authUser: state.sessionState.authUser
-    }),
-    []
-  );
-
-  const { authUser } = useMappedState(mapState);
+function Home({ authUser, loading }) {
+  if (loading) return <LoadingStatus />;
 
   return authUser ? <AuthHome /> : <NonAuthHome />;
 }
 
-export default Home;
+function mapStateToProps(state) {
+  return {
+    authUser: state.sessionState.authUser,
+    loading: state.sessionState.loading
+  };
+}
+
+export default connect(mapStateToProps)(Home);

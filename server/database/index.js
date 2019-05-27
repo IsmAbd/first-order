@@ -1,7 +1,7 @@
-import r from "rethinkdb";
-import config from "../config";
+const r = require("rethinkdb");
+const config = require("../config");
 
-module.exports.setup = function() {
+exports.setup = function() {
   r.connect({ host: config.host, port: config.port }, function(
     err,
     connection
@@ -16,10 +16,10 @@ module.exports.setup = function() {
           err.message
         );
       } else {
-        console.log("[INFO ] RethinkDB database '%s' created", dbConfig.db);
+        console.log("[INFO] RethinkDB database '%s' created", dbConfig.db);
       }
 
-      for (var tbl in config.tables) {
+      for (let tbl in config.tables) {
         (function(tableName) {
           r.db(config.db)
             .tableCreate(tableName, { primaryKey: config.tables[tbl] })
@@ -42,7 +42,7 @@ module.exports.setup = function() {
   });
 };
 
-module.exports.onConnect = function(callback) {
+exports.onConnect = function(callback) {
   r.connect({ host: config.host, port: config.port }, function(
     err,
     connection

@@ -1,4 +1,4 @@
-var thinky = require("thinky")(config);
-import config from "./config";
+const config = require("./config");
+const thinky = require("thinky")(config);
 
 module.exports = thinky;

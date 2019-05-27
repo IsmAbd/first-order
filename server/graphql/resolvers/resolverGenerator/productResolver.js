@@ -1,4 +1,4 @@
-import Restaurant from "../../../models/product";
+const Restaurant = require("../../../models/product");
 
 export async function addProduct(args) {
     const {name, description, category, type, image_path} = args.userInput;
@@ -8,12 +8,12 @@ export async function addProduct(args) {
         description: description,
         category: category,
         type: type,
-        image_path:image_path
+        image_path: image_path
     };
 
-    var product = new Product(tempProduct);
+    let product = new Product(tempProduct);
 
-    var temp = product.save().then(result => {
+    let temp = product.save().then(result => {
         return result;
     });
     return temp;
@@ -21,7 +21,7 @@ export async function addProduct(args) {
 
 
 export async function getProductByID(args) {
-    var result = await Product.filter({id: args.id})
+    let result = await Product.filter({id: args.id})
         .getJoin({category: true})
         .then(result => {
             console.log(result[0]);
@@ -32,7 +32,7 @@ export async function getProductByID(args) {
 }
 
 export async function getAllProductsByRestaurant() {
-    var result = await Restaurant.getJoin({category: true}).then(result => {
+    let result = await Restaurant.getJoin({category: true}).then(result => {
         return result;
     });
 

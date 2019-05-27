@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "redux-react-hook";
 import { withRouter } from "react-router-dom";
-import * as actions from "../../../constants/actions_types";
+import * as actions from "../../../actions/actions_types";
 import * as routes from "../../../constants/routes";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -12,9 +12,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-//Login for Business User
+//Login for Single User
 
-function BULogin(props) {
+function SULogin(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -42,7 +42,7 @@ function BULogin(props) {
       const requestBody = {
         query: `
                   query {
-                    businessUserLogin(email: "${email}", password: "${password}") {
+                    userLogin(email: "${email}", password: "${password}") {
                           id
                           token
                           email
@@ -62,7 +62,7 @@ function BULogin(props) {
       } else {
         setError(null);
         setLoading(false);
-        const { id, token } = await data.data.businessUserLogin;
+        const { id, token } = await data.data.userLogin;
 
         dispatch({
           type: actions.SET_AUTH_USER,
@@ -92,7 +92,7 @@ function BULogin(props) {
       >
         <DialogTitle id="form-dialog-title">Login</DialogTitle>
         <DialogContent>
-          <DialogContentText>Login to start you business</DialogContentText>
+          <DialogContentText>Login to order</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
@@ -123,4 +123,4 @@ function BULogin(props) {
     </>
   );
 }
-export default withRouter(BULogin);
+export default withRouter(SULogin);

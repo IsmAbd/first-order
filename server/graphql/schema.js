@@ -148,26 +148,39 @@ input InputPrice {
 }
 
 
-
-
-
-
 type RootQuery {
-    getAllRestaurants: [Restaurant!]!
+    getAllRestaurants: [Restaurant]!
     getRestaurantByID(id: String!): Restaurant
+    getRestaurantsByBU(businessUser_id: ID): [Restaurant]
+    
+    getProductsByRestaurant(restaurant_id: ID!): [Product]
+    getProductsByRestaurantAndCategory(restaurant_id: ID!, category_name: String!): [Product]
+    
+    getOrdersByUser(user_id: ID!): [Order]
+    getOrdersByUserAndPaid(user_id: ID!, paid: Boolean!): [Order]
+    getOrdersByUserAndOrderStatus(user_id: ID!, orderStatus: Int!): [Order]
+    
     userLogin(email: String!, password: String!): User
-    verifyUserToken(token: String!):User
+    verifyUserToken(token: String!): User
 
     businessUserLogin(email: String!, password: String!): BusinessUser
-    verifyBusinessUserToken(token: String!):BusinessUser
-
+    verifyBusinessUserToken(token: String!): BusinessUser
 }
 
 type RootMutation{
     addRestaurant(userInput: InputRestaurant): Restaurant
-    addUser(userInput: InputUser): User
-    addBusinessUser(userInput: InputUser): BusinessUser
+    
+    addCategory(userInput: InputCategory): Category
+    
     addProduct(userInput: InputProduct): Product
+    
+    addPrice(userInput: InputPrice): Price
+    
+    addPaymentMethod(userInput: InputPayment_Method): Payment_Method
+    
+    addUser(userInput: InputUser): User
+    
+    addBusinessUser(userInput: InputUser): BusinessUser
 }
 
 schema {

@@ -1,10 +1,14 @@
-var config = require("../config");
-var thinky = require("thinky")(config);
-var r = thinky.r;
+const config = require("../config");
+const thinky = require("thinky")(config);
+const User = require("./user");
+const Restaurant = require("./restaurant");
+const OrderedProduct = require("./orderedProduct");
+
+const r = thinky.r;
 
 let type = thinky.type;
 
-let Order  = thinky.createModel("Order", {
+let Order = thinky.createModel("Order", {
     id: type.string(),
     user_id: type.string(),
     restaurant_id: type.string(),
@@ -12,25 +16,11 @@ let Order  = thinky.createModel("Order", {
     order_status_id: type.string(),
     time: type.string(),
     paid: type.boolean()
-
-
-
-
 });
-module.exports = Order;
 
-
-//hat einen OrderStatus
-
-//user hat  Order
-const User = require("./user");
-Order.belongsTo(User, "user", "id", "user_id");
-//restaurant hat  Order
-const Restaurant = require("./restaurant");
+Order.belongsTo(User, "users", "id", "user_id");
 Order.belongsTo(Restaurant, "restaurant", "restaurant_id", "id");//nicht sicher, ob das so richtig ist
-//order hat viele ordererdproducts
-const OrderedProduct = require("./orderedProduct");
 order.hasMany(OrderedProduct, "products", "id", "orderId");
 //fertig
 
-
+module.exports = Order;

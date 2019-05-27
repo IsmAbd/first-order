@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "redux-react-hook";
 import { withRouter } from "react-router-dom";
-import * as actions from "../../../constants/actions_types";
+import * as actions from "../../../actions/actions_types";
 import * as routes from "../../../constants/routes";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -12,9 +12,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-//Signup component for business user
+//Signup component for single user
 
-function BUSignup(props) {
+function SUSignup(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
@@ -45,12 +45,12 @@ function BUSignup(props) {
       const requestBody = {
         query: `
                   mutation {
-                    addBusinessUser(userInput: {
-                    fname: "${fname}", 
-                    lname: "${lname}", 
-                    email: "${email}", 
-                    password: "${password}", 
-                    confirmPW: "${confirmPW}"}){
+                    addUser(userInput: {
+                      fname: "${fname}", 
+                      lname: "${lname}", 
+                      email: "${email}", 
+                      password: "${password}", 
+                      confirmPW: "${confirmPW}"}){
                           id
                           token
                           email
@@ -70,9 +70,7 @@ function BUSignup(props) {
       } else {
         setError(null);
         setLoading(false);
-        const { id, token } = await data.data.addBusinessUser;
-
-        console.log(id + " " + token);
+        const { id, token } = await data.data.addUser;
 
         dispatch({
           type: actions.SET_AUTH_USER,
@@ -102,7 +100,7 @@ function BUSignup(props) {
       >
         <DialogTitle id="form-dialog-title">Login</DialogTitle>
         <DialogContent>
-          <DialogContentText>SignUp to start you business</DialogContentText>
+          <DialogContentText>SignUp to order</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
@@ -159,4 +157,4 @@ function BUSignup(props) {
     </>
   );
 }
-export default withRouter(BUSignup);
+export default withRouter(SUSignup);

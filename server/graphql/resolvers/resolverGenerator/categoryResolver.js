@@ -1,4 +1,4 @@
-import Category from "../../../models/category";
+const Category = require("../../../models/category");
 
 export async function addCategory(args) {
     const {name} = args.userInput;
@@ -7,9 +7,9 @@ export async function addCategory(args) {
         name: name
     };
 
-    var category = new Category(tempCategory);
+    let category = new Category(tempCategory);
 
-    var temp = category.save().then(result => {
+    let temp = category.save().then(result => {
         return result;
     });
     return temp;
