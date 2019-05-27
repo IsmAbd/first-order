@@ -1,8 +1,8 @@
-import * as restaurantResolver from "./resolverGenerator/restaurantResolver";
-import * as userResolver from "./resolverGenerator/userResolver";
-import * as businessUserResolver from "./resolverGenerator/businessUserResolver";
-import * as categoryResolver from "./resolverGenerator/categoryResolver"
-import * as productResolver from "./resolverGenerator/productResolver";
+const restaurantResolver = require("./resolverGenerator/restaurantResolver");
+const userResolver = require("./resolverGenerator/userResolver");
+const businessUserResolver = require("./resolverGenerator/businessUserResolver");
+const categoryResolver = require("./resolverGenerator/categoryResolver");
+const productResolver = require("./resolverGenerator/productResolver");
 
 //Collects and exports all resolvers from exampleResolver folder
 

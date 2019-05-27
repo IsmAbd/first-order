@@ -1,6 +1,6 @@
-var config = require("../config");
-var thinky = require("thinky")(config);
-var r = thinky.r;
+const config = require("../config");
+const thinky = require("thinky")(config);
+const r = thinky.r;
 
 let type = thinky.type;
 
