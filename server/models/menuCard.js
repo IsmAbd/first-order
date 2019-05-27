@@ -7,9 +7,14 @@ let MenuCard = thinky.createModel("MenuCard", {
     productId: type.string()
 });
 
-module.exports = MenuCard;
+
 
 const Restaurant = require("./restaurant");
 const Product = require("./product");
 
 MenuCard.hasOne(Restaurant, "restaurant", "restaurantId", "id");
+
+
+
+
+module.exports = MenuCard;

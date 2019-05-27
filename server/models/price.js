@@ -1,6 +1,8 @@
 const config = require("../config");
 const thinky = require("thinky")(config);
 const r = thinky.r;
+const Product = require("./product");
+const OrderedProduct = require("./orderedProduct");
 
 let type = thinky.type;
 
@@ -19,6 +21,8 @@ let Price = thinky.createModel("Price", {
     fromH_min: type.string(),
     toH_min: type.string()
 });
+price.belongsTo(Product, "product", "product", "id");//nicht sicher, da referenzierung über type... und nicht id erfolgt
+//relationship price-Order fehlt noch
 
 exports.addPrice = function (price) {
     let newPrice = new Price(price);
