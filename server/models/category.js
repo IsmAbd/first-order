@@ -1,4 +1,4 @@
-var thinky = require("../thinky");
+const thinky = require("../thinky");
 let type = thinky.type;
 
 let Category = thinky.createModel("Category", {
@@ -8,5 +8,6 @@ let Category = thinky.createModel("Category", {
 
 module.exports = Category;
 
-var Product = require("./product");
+const Product = require("./product");
+
 Category.hasMany(Product, "products", "id", "categoryId");
