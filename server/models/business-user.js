@@ -1,6 +1,11 @@
 import thinky from "../thinky";
 
 let type = thinky.type;
+let PaymentMethod = require("./paymentMethod");
+let Restaurant = require("./restaurant");
+
+
+
 
 let BusinessUser = thinky.createModel("BusinessUser", {
   id: type.string(),
@@ -11,8 +16,11 @@ let BusinessUser = thinky.createModel("BusinessUser", {
   payment_method_id: type.string()
 });
 
+
+
+
+//BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuser_id");
+BusinessUser.belongsTo(PaymentMethod, "paymentMethods", "payment_method_id", "id");   
+
+
 module.exports = BusinessUser;
-
-let Restaurant = require("./restaurant");
-
-BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuser_id");

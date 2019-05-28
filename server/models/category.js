@@ -7,8 +7,10 @@ let Category = thinky.createModel("Category", {
   name: type.string()
 });
 
-module.exports = Category;
+
 
 const Product = require("./product");
 
 Category.hasMany(Product, "products", "id", "category_id");
+
+module.exports = Category;

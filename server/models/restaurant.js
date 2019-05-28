@@ -1,5 +1,6 @@
 const thinky = require("../thinky");
 let type = thinky.type;
+let BusinessUser = require("./business-user");
 
 let Restaurant = thinky.createModel("Restaurant", {
     id: type.string(),
@@ -10,8 +11,6 @@ let Restaurant = thinky.createModel("Restaurant", {
     tables: type.string()
 });
 
-module.exports = Restaurant;
-
-let BusinessUser = require("./business-user");
 
 Restaurant.belongsTo(BusinessUser, "businessuser", "businessuser_id", "id");
+module.exports = Restaurant;
