@@ -15,4 +15,4 @@ module.exports = BusinessUser;
 
 let Restaurant = require("./restaurant");
 
-BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuserId");
+BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuser_id");

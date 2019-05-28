@@ -14,4 +14,4 @@ module.exports = Restaurant;
 
 let BusinessUser = require("./business-user");
 
-Restaurant.belongsTo(BusinessUser, "businessuser", "businessuserId", "id");
+Restaurant.belongsTo(BusinessUser, "businessuser", "businessuser_id", "id");

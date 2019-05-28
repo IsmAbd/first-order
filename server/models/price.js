@@ -9,7 +9,6 @@ let type = thinky.type;
 let Price = thinky.createModel("Price", {
     id: type.string(),
     price: type.string(),
-    product: type.product,
     fromYear: type.string(),
     toYear: type.string(),
     fromMonth: type.string(),
@@ -21,8 +20,8 @@ let Price = thinky.createModel("Price", {
     fromH_min: type.string(),
     toH_min: type.string()
 });
-price.belongsTo(Product, "product", "product", "id");//nicht sicher, da referenzierung über type... und nicht id erfolgt
-//relationship price-Order fehlt noch
+price.hasOne(Product, "product", "id", "price_id");//nicht sicher, da referenzierung über type... und nicht id erfolgt
+price.hasOne()
 
 exports.addPrice = function (price) {
     let newPrice = new Price(price);

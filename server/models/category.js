@@ -11,4 +11,4 @@ module.exports = Category;
 
 const Product = require("./product");
 
-Category.hasMany(Product, "products", "id", "categoryId");
+Category.hasMany(Product, "products", "id", "category_id");

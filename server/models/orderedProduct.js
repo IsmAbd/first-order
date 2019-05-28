@@ -3,9 +3,9 @@ let type = thinky.type;
 
 let OrderedProduct = thinky.createModel("OrderedProduct", {
     id: type.string(),
-    productId: type.string(),
-    orderId: type.string(),
-    priceId: type.string(), amount: type.number(),
+    product_id: type.string(),
+    order_id: type.string(),
+    price_id: type.string(), amount: type.number(),
     specialWish: type.string()
 });
 
@@ -15,6 +15,6 @@ const Product = require("./product");
 const Price = require("./price");
 const Order = require("./order");
 
-OrderedProduct.belongsTo(Product, "products", "productId", "id");
-OrderedProduct.belongsTo(Price, "price", "priceId", "id");
-OrderedProduct.belongsTo(Order, "order", "orderId", "id");
+OrderedProduct.belongsTo(Product, "products", "product_id", "id");
+OrderedProduct.belongsTo(Price, "price", "price_id", "id");
+OrderedProduct.belongsTo(Order, "order", "order_id", "id");
