@@ -35,8 +35,6 @@ export function busignup(props, fname, lname, email, password, confirmPW) {
         setLoading(false); */
         const { id, token, fname, lname } = await data.data.addBusinessUser;
 
-        console.log(id + " " + token);
-
         dispatch({
           type: SET_AUTH_USER,
           payload: {
