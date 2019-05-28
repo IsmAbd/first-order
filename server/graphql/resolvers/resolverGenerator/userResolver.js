@@ -1,6 +1,6 @@
-const User = require("../../../models/user");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+import User from "../../../models/user";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export async function verifyUserToken(args) {
   console.log("Verify Token called");

@@ -1,9 +1,10 @@
-const thinky = require("../thinky");
+import thinky from "../thinky";
+
 let type = thinky.type;
 
 let Category = thinky.createModel("Category", {
-    id: type.string(),
-    name: type.string(),
+  id: type.string(),
+  name: type.string()
 });
 
 module.exports = Category;
