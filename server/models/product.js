@@ -14,5 +14,4 @@ let Product = thinky.createModel("Product", {
 module.exports = Product;
 
 let Category = require("./category");
-
-//Product.belongsTo(Category, "category", "category_id", "id");
+Product.belongsTo(Category, "category", "category_id", "id");

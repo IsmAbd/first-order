@@ -20,6 +20,9 @@ let Price = thinky.createModel("Price", {
     fromH_min: type.string(),
     toH_min: type.string()
 });
+module.exports = Price;
+
+
 Price.hasOne(Product, "product", "id", "price_id");//nicht sicher, da referenzierung über type... und nicht id erfolgt
 
 

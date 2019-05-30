@@ -10,7 +10,6 @@ let Restaurant = thinky.createModel("Restaurant", {
     businessuserId: type.string(),
     tables: type.string()
 });
-
-
-Restaurant.belongsTo(BusinessUser, "businessuser", "businessuser_id", "id");
 module.exports = Restaurant;
+Restaurant.belongsTo(BusinessUser, "businessuser", "businessuser_id", "id");
+

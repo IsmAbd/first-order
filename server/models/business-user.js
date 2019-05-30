@@ -16,11 +16,10 @@ let BusinessUser = thinky.createModel("BusinessUser", {
   payment_method_id: type.string()
 });
 
-
+module.exports = BusinessUser;
 
 
 //BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuser_id");
 BusinessUser.belongsTo(PaymentMethod, "paymentMethods", "payment_method_id", "id");   
 
 
-module.exports = BusinessUser;

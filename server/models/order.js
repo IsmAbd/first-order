@@ -17,10 +17,11 @@ let Order = thinky.createModel("Order", {
   time: type.string(),
   paid: type.boolean()
 });
+module.exports = Order;
 
 Order.belongsTo(User, "users", "id", "user_id");
 Order.belongsTo(Restaurant, "restaurant", "restaurant_id", "id"); //nicht sicher, ob das so richtig ist
 order.hasMany(OrderedProduct, "products", "id", "orderId");
 //fertig
 
-module.exports = Order;
+
