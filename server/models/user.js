@@ -1,5 +1,6 @@
 const config = require("../config");
 const thinky = require("thinky")(config);
+
 const r = thinky.r;
 
 let type = thinky.type;

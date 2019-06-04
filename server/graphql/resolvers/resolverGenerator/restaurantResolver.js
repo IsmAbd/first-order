@@ -63,3 +63,17 @@ export async function getAllRestaurants() {
 
   return result;
 }
+
+export async function getRestaurantsByBU(args) {
+  let result = await Restaurant.filter({
+    businessuserId: args.businessUser_id
+  })
+    .then(result => {
+      return result;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+  return result;
+}
