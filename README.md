@@ -9,32 +9,11 @@ Steps to start the server:
 *  Install RethingDB and run it in default settings
 
 **To Test Read and Input**
-* open "localhost:5000/graphql"
-* To Write to DB user following query.
+* open "localhost:5000/graphql" to test queries
+* 
 
-mutation{
-  createRocket(userInput:{
-    name: "someName",
-    date: "someDate"
-  }){
-    name
-    date
-  }
-}
-* to get all Rockets, type:
-
-{findAllRockets{
-  name
-  id
-  date
-}}
-
-* to find Rocket by ID:
-
-{findRocketById(id: "insertID" ){
-  name
-  date
-}}
-
-
-*Name of Table and Database are just for now. Will change as soon as we continue with development*
+Steps to run the population script: 
+*  Pull again and go to the server directory and run "npm install && npm update".
+*  Open the Rethinkdb page on http://localhost:8080/#tables, check all tables and delete them.
+*  Back to the server directory, run "npm run stable" and in a different terminal, run "run npm populateDB"
+*  After the script is done you should have 3 BusinessUser, each of them has an own Restaurant and each of the Restaurants has 3 Categories.
