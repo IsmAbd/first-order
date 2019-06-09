@@ -35,8 +35,7 @@ type Restaurant {
     address: String!
     payment_methods: [Payment_Method!]
     tables: [String!]!
-    businessUsers: [BusinessUser!]
-    products: [Product!]
+    businessUser: BusinessUser!
     orders: [Order!]
 }
 
@@ -45,6 +44,8 @@ input InputRestaurant{
     name: String!
     address: String!
     businessUserID: String!
+    payment_method_id: String
+    tables: String
 }
 
 type User {
@@ -96,10 +97,13 @@ input InputBusinessUser{
 type Category {
     id: ID!
     name: String!
+    restaurant: Restaurant!
+    products: [Product!]
 }
 
 input InputCategory{
     name: String!
+    restaurantID: String!
 }
 
 type Product {
@@ -116,6 +120,8 @@ input InputProduct {
     name: String!
     description: String!
     type: String!
+    categoryID: String!
+    imagePath: String
 }
 
 type Price {
@@ -150,11 +156,12 @@ input InputPrice {
 
 type RootQuery {
     getAllRestaurants: [Restaurant]!
-    getRestaurantByID(id: String!): Restaurant
-    getRestaurantsByBU(businessUser_id: ID): [Restaurant]
+    getRestaurantByID(restaurantID: String!): Restaurant!
+    getRestaurantsByBU(businessUser_id: String!): [Restaurant!]
+
+    getCategoriesByRestaurantID(restaurantID: String!): [Category!]
     
-    getProductsByRestaurant(restaurant_id: ID!): [Product]
-    getProductsByRestaurantAndCategory(restaurant_id: ID!, category_name: String!): [Product]
+    getProductByID(id: String!): Product!
     
     getOrdersByUser(user_id: ID!): [Order]
     getOrdersByUserAndPaid(user_id: ID!, paid: Boolean!): [Order]
@@ -181,6 +188,7 @@ type RootMutation{
     addUser(userInput: InputUser): User
     
     addBusinessUser(userInput: InputUser): BusinessUser
+
 }
 
 schema {

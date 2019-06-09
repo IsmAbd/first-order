@@ -1,15 +1,9 @@
-const config = require("../config");
-const thinky = require("thinky")(config);
-const r = thinky.r;
-const Product = require("./product");
-const OrderedProduct = require("./orderedProduct");
-
+const thinky = require("../thinky");
 let type = thinky.type;
 
 let Price = thinky.createModel("Price", {
   id: type.string(),
   price: type.string(),
-  product: type.product, //Product oder ProductID?
   fromYear: type.string(),
   toYear: type.string(),
   fromMonth: type.string(),
@@ -19,23 +13,11 @@ let Price = thinky.createModel("Price", {
   fromDay: type.string(),
   toDay: type.string(),
   fromH_min: type.string(),
-  toH_min: type.string()
+  toH_min: type.string(),
+  price_id: type.string()
 });
-price.belongsTo(Product, "product", "product", "id"); //nicht sicher, da referenzierung über type... und nicht id erfolgt
-//relationship price-Order fehlt noch
+module.exports = Price;
 
-exports.addPrice = function(price) {
-  let newPrice = new Price(price);
+const Product = require("./product");
 
-  let temp = newPrice.save().then(result => {
-    return result;
-  });
-  return temp;
-};
-
-function handleError(res) {
-  return function(error) {
-    console.log(error.message);
-    return res.send(500, { error: error.message });
-  };
-}
+Price.belongsTo(Product, "product", "price_id", "id"); //nicht sicher, da referenzierung über type... und nicht id erfolgt

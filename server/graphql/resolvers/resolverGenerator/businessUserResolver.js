@@ -82,6 +82,3 @@ export async function addBusinessUser(args) {
     throw err;
   }
 }
-
-//Function to add 1 restaurant to a business user -> right now its just possible to add one restaurant because theres no
-//Update function yet

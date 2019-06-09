@@ -1,22 +1,31 @@
-import Restaurant from "../../../models/product";
+import Product from "../../../models/product";
+import Restaurant from "../../../models/restaurant";
+import Category from "../../../models/category";
 
 export async function addProduct(args) {
-  const { name, description, category, type, image_path } = args.userInput;
+  const { name, description, categoryID, type, image_path } = args.userInput;
 
   const tempProduct = {
     name: name,
     description: description,
-    category: category,
     type: type,
     image_path: image_path
   };
 
   let product = new Product(tempProduct);
 
-  let temp = product.save().then(result => {
+  let category = await Category.filter({ id: categoryID }).then(result => {
+    return result[0];
+  });
+
+  category.products = product;
+  product.category = category;
+
+  let result = await product.saveAll({ category: true }).then(result => {
     return result;
   });
-  return temp;
+
+  return result;
 }
 
 export async function getProductByID(args) {

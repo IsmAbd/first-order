@@ -3,6 +3,7 @@ import * as userResolver from "./resolverGenerator/userResolver";
 import * as businessUserResolver from "./resolverGenerator/businessUserResolver";
 import * as categoryResolver from "./resolverGenerator/categoryResolver";
 import * as productResolver from "./resolverGenerator/productResolver";
+import * as priceResolver from "./resolverGenerator/priceResolver";
 
 //Collects and exports all resolvers from exampleResolver folder
 
@@ -11,5 +12,6 @@ export default {
   ...userResolver,
   ...businessUserResolver,
   ...categoryResolver,
-  ...productResolver
+  ...productResolver,
+  ...priceResolver
 };

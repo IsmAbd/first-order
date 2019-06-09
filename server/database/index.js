@@ -16,7 +16,7 @@ exports.setup = function() {
           err.message
         );
       } else {
-        console.log("[INFO] RethinkDB database '%s' created", dbConfig.db);
+        console.log("[INFO] RethinkDB database '%s' created", config.db);
       }
 
       for (let tbl in config.tables) {

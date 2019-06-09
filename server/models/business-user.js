@@ -13,6 +13,13 @@ let BusinessUser = thinky.createModel("BusinessUser", {
 
 module.exports = BusinessUser;
 
-let Restaurant = require("./restaurant");
+const Restaurant = require("./restaurant");
+const PaymentMethod = require("./paymentMethod");
 
-BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuserId");
+BusinessUser.belongsTo(
+  PaymentMethod,
+  "paymentMethods",
+  "payment_method_id",
+  "id"
+);
+BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuser_id");

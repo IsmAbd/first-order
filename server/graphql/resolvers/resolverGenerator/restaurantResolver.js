@@ -5,75 +5,74 @@ export async function addRestaurant(args) {
   const {
     name,
     address,
-    paymentMethodID,
+    payment_method_id,
     tables,
     businessUserID
   } = args.userInput;
 
-  console.log("Called1");
   const tempRestaurant = {
     name: name,
     address: address,
-    paymentMethodID: paymentMethodID,
+    payment_method_id: payment_method_id,
     tables: tables
   };
 
   let restaurant = new Restaurant(tempRestaurant);
 
-  console.log(businessUserID);
   let businessUser = await BusinessUser.filter({
     id: businessUserID
-  }).then(result => {
-    console.log(result[0]);
-    return result[0];
-  });
-
-  businessUser.restaurants = restaurant;
-  restaurant.businessuser = businessUser;
-
-  restaurant.saveAll({ businessuser: true }).then(result => {
-    //Error handling...
-  });
-
-  let result = await Restaurant.filter({ id: restaurant.id })
-    .getJoin({ businessuser: true })
+  })
     .then(result => {
       console.log(result[0]);
       return result[0];
-    });
+    })
+    .catch(err => console.log(err));
+
+  businessUser.restaurants = restaurant;
+  restaurant.businessUser = businessUser;
+
+  let result = await restaurant
+    .saveAll({ businessUser: true })
+    .then(result => {
+      return result;
+    })
+    .catch(err => console.log(err));
 
   return result;
 }
 
 export async function getRestaurantByID(args) {
-  let result = await Restaurant.filter({ id: args.id })
-    .getJoin({ businessuser: true })
+  let result = await Restaurant.filter({
+    id: args.restaurantID
+  })
+    .getJoin({ businessUser: true })
     .then(result => {
-      console.log(result[0]);
-      return result[0];
+      return result;
     });
 
-  return result;
+  return result[0];
 }
 
 export async function getAllRestaurants() {
-  let result = await Restaurant.getJoin({ businessuser: true }).then(result => {
+  let result = await Restaurant.getJoin({
+    businessUser: true
+  }).then(result => {
     return result;
   });
 
+  console.log(result);
   return result;
 }
 
 export async function getRestaurantsByBU(args) {
   let result = await Restaurant.filter({
-    businessuserId: args.businessUser_id
+    businessuser_id: args.businessUser_id
   })
+    .getJoin({ businessUser: true })
     .then(result => {
       return result;
-    })
-    .catch(err => {
-      console.log(err);
     });
 
+  console.log(result);
   return result;
 }
