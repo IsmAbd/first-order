@@ -16,4 +16,4 @@ const Category = require("./category");
 const Price = require("./price");
 
 Product.belongsTo(Category, "category", "category_id", "id");
-Product.hasMany(Price, "prices", "id", "price_id");
+Product.hasMany(Price, "prices", "id", "product_id");

@@ -37,6 +37,7 @@ type Restaurant {
     tables: [String!]!
     businessUser: BusinessUser!
     orders: [Order!]
+    categories: [Category!]
 }
 
 
@@ -113,7 +114,7 @@ type Product {
     category: Category!
     type: String!
     image_path: String
-    price: Price!
+    prices: [Price!]
 }
 
 input InputProduct {
@@ -126,7 +127,7 @@ input InputProduct {
 
 type Price {
     id: ID!
-    price:Float!
+    price:String!
     fromYear: Int
     toYear: Int
     fromMonth: Int
@@ -140,7 +141,8 @@ type Price {
 }
 
 input InputPrice {
-    price: Float!
+    productID: String!
+    price: String!
     fromYear: Int
     toYear: Int
     fromMonth: Int

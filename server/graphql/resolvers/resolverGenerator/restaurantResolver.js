@@ -45,7 +45,7 @@ export async function getRestaurantByID(args) {
   let result = await Restaurant.filter({
     id: args.restaurantID
   })
-    .getJoin({ businessUser: true })
+    .getJoin({ businessUser: true, categories: { products: { prices: true } } })
     .then(result => {
       return result;
     });
@@ -55,7 +55,8 @@ export async function getRestaurantByID(args) {
 
 export async function getAllRestaurants() {
   let result = await Restaurant.getJoin({
-    businessUser: true
+    businessUser: true,
+    categories: { products: { prices: true } }
   }).then(result => {
     return result;
   });
@@ -68,11 +69,10 @@ export async function getRestaurantsByBU(args) {
   let result = await Restaurant.filter({
     businessuser_id: args.businessUser_id
   })
-    .getJoin({ businessUser: true })
+    .getJoin({ businessUser: true, categories: { products: { prices: true } } })
     .then(result => {
       return result;
     });
 
-  console.log(result);
   return result;
 }

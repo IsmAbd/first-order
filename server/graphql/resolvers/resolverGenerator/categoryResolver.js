@@ -32,7 +32,10 @@ export async function getCategoriesByRestaurantID(args) {
   const { restaurantID } = args;
 
   let categories = await Category.filter({ restaurant_id: restaurantID })
-    .getJoin({ restaurant: true, products: true })
+    .getJoin({
+      restaurant: true,
+      products: { prices: true }
+    })
     .then(result => {
       return result;
     });
