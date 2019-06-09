@@ -12,8 +12,10 @@ Steps to start the server:
 * open "localhost:5000/graphql" to test queries
 * 
 
-Steps to run the population script: 
+**Steps to run the population script: **
 *  Pull again and go to the server directory and run "npm install && npm update".
-*  Open the Rethinkdb page on http://localhost:8080/#tables, check all tables and delete them.
-*  Back to the server directory, run "npm run stable" and in a different terminal, run "run npm populateDB"
+*  Start RethinkDB Server
+*  Open the RethinkDB page on http://localhost:8080/#tables, check all tables and delete them.
+*  Back to the server directory, run "npm run stable" first and in a different terminal, run "run npm populateDB"
 *  After the script is done you should have 3 BusinessUser, each of them has an own Restaurant and each of the Restaurants has 3 Categories.
+*  You can check it by visit http://localhost:8080/#dataexplorer and entering "r.table("Restaurant")". //Also BusinessUser or Category are already populated.
