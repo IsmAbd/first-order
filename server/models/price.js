@@ -14,10 +14,13 @@ let Price = thinky.createModel("Price", {
   toDay: type.string(),
   fromH_min: type.string(),
   toH_min: type.string(),
-  product_id: type.string()
+  product_id: type.string(),
+  OrderedProduct_id: type.string()
 });
 module.exports = Price;
 
 const Product = require("./product");
+const OrderedProduct = require("./orderedProduct");
 
 Price.belongsTo(Product, "product", "product_id", "id"); //nicht sicher, da referenzierung über type... und nicht id erfolgt
+Price.belongsTo(OrderedProduct, "orderedproduct", "orderedProduct_id", "id");

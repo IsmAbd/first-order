@@ -14,4 +14,4 @@ let User = thinky.createModel("User", {
   payment_method_id: type.string()
 });
 
-export default User;
+module.exports = User;
