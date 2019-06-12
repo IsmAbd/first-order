@@ -19,5 +19,5 @@ const Order = require("./order");
 
 Restaurant.hasMany(Category, "categories", "id", "restaurant_id");
 Restaurant.belongsTo(BusinessUser, "businessUser", "businessuser_id", "id");
-//Restaurant.belongsTo(Order, "order", "order_id", "id");
-Restaurant.hasMany(Order, "orders", "id", "restaurant_id");
+Restaurant.belongsTo(Order, "order", "order_id", "id");
+//Restaurant.belongsto(Order, "orders", "id", "restaurant_id");

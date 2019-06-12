@@ -10,6 +10,7 @@ type Order {
     time: String!
     paid: Boolean!
     products: [OrderedProduct!]!
+    restaurant: Restaurant!
 }
 
 input InputOrder {
@@ -35,7 +36,6 @@ type Restaurant {
     payment_methods: [Payment_Method!]
     tables: [String!]!
     businessUser: BusinessUser!
-    orders: [Order!]
     categories: [Category!]
 }
 
@@ -55,7 +55,6 @@ type User {
     email: String!
     token: String!
     payment_methods: [Payment_Method!]
-    orders: [Order!]
 }
 
 input InputUser{

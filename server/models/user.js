@@ -11,7 +11,14 @@ let User = thinky.createModel("User", {
   lname: type.string(),
   email: type.string().required(),
   password: type.string(),
-  payment_method_id: type.string()
+  //payment_method_id: type.string(),
+  order_id: type.string()
 });
 
 module.exports = User;
+
+const Order = require("./order");
+const PaymentMethod = require("./paymentMethod");
+
+User.hasMany(PaymentMethod, "paymentMethods", "id", "user_id");
+User.belongsTo(Order, "order", "order_id", "id");
