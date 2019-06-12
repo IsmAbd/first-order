@@ -17,4 +17,4 @@ const Order = require("./order");
 
 OrderedProduct.hasOne(Product, "products", "id", "orderedProduct_id");
 OrderedProduct.hasOne(Price, "price", "id", "orderedProduct_id");
-OrderedProduct.belongsTo(Order, "order", "order_id", "id");
+//OrderedProduct.belongsTo(Order, "order", "order_id", "id");
