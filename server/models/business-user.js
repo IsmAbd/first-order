@@ -18,4 +18,4 @@ const PaymentMethod = require("./paymentMethod");
 
 
 BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuser_id");
-BusinessUser.hasMany(PaymentMethod, "paymentMethods", "id", "bussinesUser_id");
+//BusinessUser.hasMany(PaymentMethod, "paymentMethods", "id", "bussinesUser_id");
