@@ -21,4 +21,4 @@ const Order = require("./order");
 const PaymentMethod = require("./paymentMethod");
 
 User.hasMany(PaymentMethod, "paymentMethods", "id", "user_id");
-User.belongsTo(Order, "order", "order_id", "id");
+User.hasMany(Order, "orders", "id", "user_id");

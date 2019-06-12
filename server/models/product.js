@@ -19,4 +19,5 @@ const OrderedProduct = require("./orderedProduct");
 
 Product.belongsTo(Category, "category", "category_id", "id");
 Product.hasMany(Price, "prices", "id", "product_id");
-Product.belongsTo(OrderedProduct, "orderedproducts", "orderedProduct_id", "id");
+//Product.belongsTo(OrderedProduct, "orderedproducts", "orderedProduct_id", "id");  nicht sicher
+  
