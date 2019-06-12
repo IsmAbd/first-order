@@ -16,8 +16,10 @@ module.exports = Restaurant;
 const BusinessUser = require("./business-user");
 const Category = require("./category");
 const Order = require("./order");
+const PaymentMethod = require("./paymentMethod");
 
 Restaurant.hasMany(Category, "categories", "id", "restaurant_id");
 Restaurant.belongsTo(BusinessUser, "businessUser", "businessuser_id", "id");
 Restaurant.belongsTo(Order, "order", "order_id", "id");
+Restaurant.hasMany(PaymentMethod, "paymentMethods", "id", "restaurant_id");
 //Restaurant.belongsto(Order, "orders", "id", "restaurant_id");

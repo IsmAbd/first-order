@@ -1,3 +1,4 @@
+//fertig
 import thinky from "../thinky";
 
 let type = thinky.type;
