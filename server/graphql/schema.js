@@ -20,7 +20,6 @@ input InputOrder {
     paid: Boolean!
 }
 
-
 type OrderedProduct{
     id: ID!
     product: Product!
@@ -33,18 +32,17 @@ type Restaurant {
     id: ID!
     name: String!
     address: String!
-    payment_methods: [Payment_Method!]
+    payment_methods: [Payment_Method!]!
     tables: [String!]!
-    businessUser: BusinessUser!
+    businessUser: [BusinessUser!]!
     categories: [Category!]
 }
-
 
 input InputRestaurant{
     name: String!
     address: String!
-    businessUser: BusinessUser!
-    payment_methods: [Payment_Method!]!
+    businessUser: [InputBusinessUser!]!
+    payment_methods: [InputPayment_Method!]!
     tables: String
 }
 
@@ -71,18 +69,7 @@ type BusinessUser{
     lname: String!
     email: String!
     token: String!
-    payment_methods: [Payment_Method!]
     restaurants: [Restaurant!]
-}
-
-type Payment_Method{
-    id: ID!
-    name: String!
-}
-
-
-input InputPayment_Method{
-    name: String!
 }
 
 input InputBusinessUser{
@@ -91,6 +78,15 @@ input InputBusinessUser{
     email: String!
     password: String!
     confirmPW: String!
+}
+
+type Payment_Method{
+    id: ID!
+    name: String!
+}
+
+input InputPayment_Method{
+    name: String!
 }
 
 type Category {
@@ -102,7 +98,7 @@ type Category {
 
 input InputCategory{
     name: String!
-    restaurantID: String!
+    categories: [InputCategory!]!
 }
 
 type Product {
@@ -119,7 +115,7 @@ input InputProduct {
     name: String!
     description: String!
     type: String!
-    categoryID: String!
+    category: InputCategory!
     imagePath: String
 }
 
