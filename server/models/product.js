@@ -1,3 +1,4 @@
+//fertig
 const thinky = require("../thinky");
 let type = thinky.type;
 

@@ -8,7 +8,7 @@ let Restaurant = thinky.createModel("Restaurant", {
   name: type.string(),
   address: type.string(),
   businessuser_id: type.string(),
-  tables: type.string()
+  tables: [type.string()]
 });
 module.exports = Restaurant;
 
