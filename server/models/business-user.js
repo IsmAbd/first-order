@@ -8,7 +8,7 @@ let BusinessUser = thinky.createModel("BusinessUser", {
   lname: type.string(),
   email: type.string(),
   password: type.string(),
-  payment_method_id: type.string()
+  //payment_method_id: type.string()
 });
 
 module.exports = BusinessUser;
@@ -16,10 +16,6 @@ module.exports = BusinessUser;
 const Restaurant = require("./restaurant");
 const PaymentMethod = require("./paymentMethod");
 
-BusinessUser.belongsTo(
-  PaymentMethod,
-  "paymentMethods",
-  "payment_method_id",
-  "id"
-);
+
 BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuser_id");
+BusinessUser.hasMany(PaymentMethod, "paymentMethods", "id", "bussinesUser_id");
