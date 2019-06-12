@@ -11,4 +11,4 @@ let PaymentMethod = thinky.createModel("PaymentMethod", {
 
 module.exports = PaymentMethod;
 
-//PaymentMethod.hasOne(BusinessUser, "businessUser", "id", "payment_method_id");
+PaymentMethod.hasOne(BusinessUser, "businessUser", "id", "payment_method_id");
