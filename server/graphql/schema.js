@@ -5,7 +5,6 @@ export default buildSchema(`
 type Order {
     id: ID!
     user: User!
-    restaurant: Restaurant!
     tableNumber: Int!
     orderStatus: Int!
     time: String!

@@ -1,3 +1,4 @@
+//fertig
 const config = require("../config");
 const thinky = require("thinky")(config);
 
@@ -23,5 +24,6 @@ const OrderedProduct = require("./orderedProduct");
 
 Order.belongsTo(User, "users", "id", "user_id");
 Order.belongsTo(Restaurant, "restaurant", "restaurant_id", "id"); //nicht sicher, ob das so richtig ist
+//Order.hasOne(Restaurant, "restaurant", "id", )
 Order.hasMany(OrderedProduct, "products", "id", "orderId");
-//fertig
+

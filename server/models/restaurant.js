@@ -8,12 +8,16 @@ let Restaurant = thinky.createModel("Restaurant", {
   address: type.string(),
   payment_method_id: type.string(),
   businessuser_id: type.string(),
+  order_id: type.string(),
   tables: type.string()
 });
 module.exports = Restaurant;
 
 const BusinessUser = require("./business-user");
 const Category = require("./category");
+const Order = require("./order");
 
 Restaurant.hasMany(Category, "categories", "id", "restaurant_id");
 Restaurant.belongsTo(BusinessUser, "businessUser", "businessuser_id", "id");
+//Restaurant.belongsTo(Order, "order", "order_id", "id");
+Restaurant.hasMany(Order, "orders", "id", "restaurant_id");
