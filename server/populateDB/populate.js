@@ -117,7 +117,7 @@ async function postCategory(category) {
                         mutation {
                           addCategory(userInput: {
                               name: "${name}", 
-                              restaurantID: "${restaurant_id}"}) {
+                              restaurant_ID: "${restaurant_id}"}) {
                                   id
                               }
                           }
@@ -182,7 +182,7 @@ async function postRestaurant(restaurant) {
                             addRestaurant(userInput: {
                                 name: "${name}", 
                                 address: "${address}", 
-                                businessUserID: "${businessUserID}"}) {
+                                businessUser_ID: "${businessUserID}"}) {
                                     id
                                 }
                             }
