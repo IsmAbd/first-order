@@ -14,8 +14,4 @@ let PaymentMethod = thinky.createModel("PaymentMethod", {
 module.exports = PaymentMethod;
 
 
-const User = require("./user");
-const Restaurant = require("./restaurant");
 
-PaymentMethod.belongsTo(User, "user", "user_id", "id");
-PaymentMethod.belongsTo(Restaurant, "restaurant", "restaurant_id", "id");

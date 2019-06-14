@@ -42,7 +42,7 @@ type Restaurant {
     address: String!
     payment_methods: [Payment_Method!]
     tables: [String!]
-    businessUser: [BusinessUser!]
+    businessUser: BusinessUser!
     categories: [Category!]
     orders: [Order!]
 }

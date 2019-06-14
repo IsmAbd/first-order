@@ -15,9 +15,6 @@ module.exports = Product;
 
 const Category = require("./category");
 const Price = require("./price");
-const OrderedProduct = require("./orderedProduct");
 
 Product.belongsTo(Category, "category", "category_id", "id");
 Product.hasMany(Price, "prices", "id", "product_id");
-Product.belongsTo(OrderedProduct, "orderedproducts", "id", "product_id");  
-  
