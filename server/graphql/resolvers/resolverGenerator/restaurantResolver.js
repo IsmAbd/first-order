@@ -7,7 +7,7 @@ export async function addRestaurant(args) {
     address,
     payment_method_id,
     tables,
-    businessUserID
+    businessUser_IDs
   } = args.userInput;
 
   const tempRestaurant = {
@@ -20,10 +20,9 @@ export async function addRestaurant(args) {
   let restaurant = new Restaurant(tempRestaurant);
 
   let businessUser = await BusinessUser.filter({
-    id: businessUserID
+    id: businessUser_IDs
   })
     .then(result => {
-      console.log(result[0]);
       return result[0];
     })
     .catch(err => console.log(err));
@@ -34,6 +33,7 @@ export async function addRestaurant(args) {
   let result = await restaurant
     .saveAll({ businessUser: true })
     .then(result => {
+      console.log(result);
       return result;
     })
     .catch(err => console.log(err));
