@@ -9,7 +9,7 @@ type Order {
     orderStatus: Int!
     time: String!
     paid: Boolean!
-    products: [OrderedProduct!]
+    orderedProducts: [OrderedProduct!]
     restaurant: Restaurant!
 }
 
@@ -44,6 +44,7 @@ type Restaurant {
     tables: [String!]
     businessUser: [BusinessUser!]
     categories: [Category!]
+    orders: [Order!]
 }
 
 input InputRestaurant{
