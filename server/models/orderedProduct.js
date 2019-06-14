@@ -15,8 +15,8 @@ module.exports = OrderedProduct;
 
 const Product = require("./product");
 const Price = require("./price");
-const Order = require("./order");
+
 
 OrderedProduct.belongsTo(Product, "products", "product_id", "id");
 OrderedProduct.belongsTo(Price, "price", "price_id", "id");
-OrderedProduct.belongsTo(Order, "order", "order_id", "id");
+

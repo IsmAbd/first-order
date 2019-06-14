@@ -19,8 +19,5 @@ let Price = thinky.createModel("Price", {
 });
 module.exports = Price;
 
-const Product = require("./product");
-const OrderedProduct = require("./orderedProduct");
 
-Price.belongsTo(Product, "product", "product_id", "id"); //nicht sicher, da referenzierung über type... und nicht id erfolgt
-Price.hasOne(OrderedProduct, "orderedproduct", "id", "price_id");
+
