@@ -14,5 +14,4 @@ Payment methods in User und Restaurants im Model ergänzen (auch Resolver?)
 //Building GraphQL Test Schema and exporting it
 //waru, sind ids and ID und nicht String definiert?
 
-Payment Method im BU?
-Category im Restaurant?
+BU - Restaurant
