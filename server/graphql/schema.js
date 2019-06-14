@@ -123,7 +123,7 @@ input InputProduct {
     name: String!
     description: String!
     type: String!
-    category: InputCategory!
+    category_ID: String!
     imagePath: String
 }
 
