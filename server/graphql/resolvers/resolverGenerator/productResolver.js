@@ -3,7 +3,7 @@ import Restaurant from "../../../models/restaurant";
 import Category from "../../../models/category";
 
 export async function addProduct(args) {
-  const { name, description, categoryID, type, image_path } = args.userInput;
+  const { name, description, category_ID, type, image_path } = args.userInput;
 
   const tempProduct = {
     name: name,
@@ -14,7 +14,7 @@ export async function addProduct(args) {
 
   let product = new Product(tempProduct);
 
-  let category = await Category.filter({ id: categoryID }).then(result => {
+  let category = await Category.filter({ id: category_ID }).then(result => {
     return result[0];
   });
 

@@ -2,7 +2,7 @@ import Category from "../../../models/category";
 import Restaurant from "../../../models/restaurant";
 
 export async function addCategory(args) {
-  const { name, restaurantID } = args.userInput;
+  const { name, restaurant_ID } = args.userInput;
 
   const tempCategory = {
     name: name
@@ -12,7 +12,7 @@ export async function addCategory(args) {
 
   console.log(category);
 
-  let restaurant = await Restaurant.filter({ id: restaurantID }).then(
+  let restaurant = await Restaurant.filter({ id: restaurant_ID }).then(
     result => {
       return result[0];
     }
@@ -29,9 +29,9 @@ export async function addCategory(args) {
 }
 
 export async function getCategoriesByRestaurantID(args) {
-  const { restaurantID } = args;
+  const { restaurant_ID } = args;
 
-  let categories = await Category.filter({ restaurant_id: restaurantID })
+  let categories = await Category.filter({ restaurant_id: restaurant_ID })
     .getJoin({
       restaurant: true,
       products: { prices: true }

@@ -7,7 +7,7 @@ export async function addRestaurant(args) {
     address,
     payment_method_id,
     tables,
-    businessUser_IDs
+    businessUser_ID
   } = args.userInput;
 
   const tempRestaurant = {
@@ -20,7 +20,7 @@ export async function addRestaurant(args) {
   let restaurant = new Restaurant(tempRestaurant);
 
   let businessUser = await BusinessUser.filter({
-    id: businessUser_IDs
+    id: businessUser_ID
   })
     .then(result => {
       return result[0];
@@ -67,7 +67,7 @@ export async function getAllRestaurants() {
 
 export async function getRestaurantsByBU(args) {
   let result = await Restaurant.filter({
-    businessuser_id: args.businessUser_id
+    businessuser_id: args.businessUser_ID
   })
     .getJoin({ businessUser: true, categories: { products: { prices: true } } })
     .then(result => {

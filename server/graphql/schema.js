@@ -50,9 +50,9 @@ type Restaurant {
 input InputRestaurant{
     name: String!
     address: String!
-    businessUser_IDs: [String!]
+    businessUser_ID: String!
     payment_method_IDs: [String!]
-    tables: String!
+    tables: String
 }
 
 type User {
