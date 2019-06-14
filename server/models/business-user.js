@@ -8,14 +8,12 @@ let BusinessUser = thinky.createModel("BusinessUser", {
   lname: type.string(),
   email: type.string(),
   password: type.string(),
-  //payment_method_id: type.string()
+  
 });
 
 module.exports = BusinessUser;
 
 const Restaurant = require("./restaurant");
-const PaymentMethod = require("./paymentMethod");
-
-
+//evtl noch ändern
 BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuser_id");
-//BusinessUser.hasMany(PaymentMethod, "paymentMethods", "id", "bussinesUser_id");
+
