@@ -9,11 +9,12 @@ type Order {
     orderStatus: Int!
     time: String!
     paid: Boolean!
-    products: [OrderedProduct!]!
+    products: [OrderedProduct!]
     restaurant: Restaurant!
 }
 
 input InputOrder {
+    user_ID: String!
     tableNumber: Int!
     orderStatus: Int!
     time: String!
@@ -28,22 +29,29 @@ type OrderedProduct{
     wish: String!
 }
 
+input InputOrderedProduct{
+    product_ID: String!
+    price_ID: String!
+    amount: Int!
+    wish: String!
+}
+
 type Restaurant {
     id: ID!
     name: String!
     address: String!
-    payment_methods: [Payment_Method!]!
-    tables: [String!]!
-    businessUser: [BusinessUser!]!
+    payment_methods: [Payment_Method!]
+    tables: [String!]
+    businessUser: [BusinessUser!]
     categories: [Category!]
 }
 
 input InputRestaurant{
     name: String!
     address: String!
-    businessUser: [InputBusinessUser!]!
-    payment_methods: [InputPayment_Method!]!
-    tables: String
+    businessUser_IDs: [String!]
+    payment_method_IDs: [String!]
+    tables: String!
 }
 
 type User {
@@ -98,15 +106,15 @@ type Category {
 
 input InputCategory{
     name: String!
-    categories: [InputCategory!]!
+    restaurant_ID: String!
 }
 
 type Product {
     id: ID!             
     name: String!
     description: String!
-    category: Category!
     type: String!
+    category: Category!
     image_path: String
     prices: [Price!]
 }
