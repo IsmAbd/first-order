@@ -15,5 +15,5 @@ module.exports = BusinessUser;
 
 const Restaurant = require("./restaurant");
 //evtl noch ändern
-BusinessUser.hasMany(Restaurant, "restaurants", "id", "businessuser_id");
+BusinessUser.hasAndBelongsToMany(Restaurant, "restaurants", "id", "id");
 

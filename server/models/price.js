@@ -15,8 +15,7 @@ let Price = thinky.createModel("Price", {
   toDay: type.string(),
   fromH_min: type.string(),
   toH_min: type.string(),
-  product_id: type.string(),
-  //OrderedProduct_id: type.string()
+  product_id: type.string()  //OrderedProduct_id: type.string()
 });
 module.exports = Price;
 
